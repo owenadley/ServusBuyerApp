@@ -11,8 +11,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 
-type Props = {};
-export default class NavBar extends Component<Props> {
+//type Props = {};
+class NavBar extends Component {
   render() {
     return (
       <View style={styles.header}>
@@ -23,12 +23,6 @@ export default class NavBar extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'skyblue',
-  },
   header: {
     flex: 1,
     backgroundColor: 'steelblue',
@@ -42,14 +36,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#fff',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
+
+export default NavBar;

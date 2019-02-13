@@ -9,7 +9,8 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import NavBar from 'NavBar';
+import NavBar from 'C:\\Users\\Owen\\Desktop\\Local\\Dev\\Capstone\\components\\NavBar.js';
+import SignInForm from './SignIn.js';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -25,7 +26,8 @@ export default class App extends Component<Props> {
       <View style={{flex:1}}>
         <NavBar />
         <View style={styles.container}>
-          <Text style={styles.welcome}>Capstone! Test3</Text>
+          <Text style={styles.welcome}>Welcome</Text>
+          <SignInForm />
         </View>
       </View>
     );
