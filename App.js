@@ -21,8 +21,13 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Capstone!</Text>
+      <View style={{flex:1}}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Task It</Text>
+        </View>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>Capstone! Test3</Text>
+        </View>
       </View>
     );
   }
@@ -30,10 +35,23 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'skyblue',
+  },
+  header: {
+    flex: 1,
+    backgroundColor: 'steelblue',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  headerTitle: {
+    fontSize: 16,
+    paddingLeft: 30,
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#fff',
   },
   welcome: {
     fontSize: 20,
