@@ -17,7 +17,7 @@ type Props = {};
 export default class SignIn extends Component<Props> {
   render() {
     return (
-      <Text>Sign In</Text>
+      <Text>Sign In - test</Text>
     );
   }
 }
