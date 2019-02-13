@@ -9,15 +9,25 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-//import tc from 'tcomb-form-native';
+
+import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
 
 //const SignInForm = tc.form.Form;
 
-type Props = {};
-export default class SignIn extends Component<Props> {
+//type Props = {};
+class SignIn extends Component {
   render() {
     return (
-      <Text>Sign In - test</Text>
+  //    <View style={styles.formWrap}>
+    //    <Text>Sign In - test</Text>
+    //  <FormLabel> Name </FormLabel>
+        //<FormInput />
+    //    <FormValidationMessage>Error message</FormValidationMessage>
+  //    </View>
+
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Task It</Text>
+      </View>
     );
   }
 }
@@ -30,4 +40,19 @@ export default class SignIn extends Component<Props> {
 //});
 
 const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+    backgroundColor: 'steelblue',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  headerTitle: {
+    fontSize: 16,
+    paddingLeft: 30,
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#fff',
+  },
 });
+
+export default SignIn;
