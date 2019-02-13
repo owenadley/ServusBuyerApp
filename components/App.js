@@ -9,6 +9,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import NavBar from 'NavBar';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -22,9 +23,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={{flex:1}}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Task It</Text>
-        </View>
+        <NavBar />
         <View style={styles.container}>
           <Text style={styles.welcome}>Capstone! Test3</Text>
         </View>
