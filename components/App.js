@@ -27,7 +27,7 @@ export default class App extends Component<Props> {
       <View style={{flex:1,flexDirection: 'column'}}>
         <NavBar />
         <View style={styles.container}>
-          <Text style={styles.welcome}>Welcome</Text>
+          <Text style={styles.welcome}>Submit</Text>
         </View>
         <SignIn />
       </View>

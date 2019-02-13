@@ -21,10 +21,9 @@ class SignIn extends Component {
       <View style={styles.container}>
         <View style={styles.signin}>
 
-          <Text style={styles.subtitle}>Sign In</Text>
           <Input
-            placeholder='email'
-            label='Enter Email'
+            placeholder='you@example.com'
+            label='Email'
             leftIcon={
               <Icon
                 name='user'
@@ -35,8 +34,8 @@ class SignIn extends Component {
           />
 
           <Input
-            placeholder='password'
-            label='Enter Password'
+            placeholder='abc'
+            label='Password'
             leftIcon={
               <Icon
                 name='user'
@@ -52,7 +51,7 @@ class SignIn extends Component {
           icon={{name: 'home', size: 32}}
           buttonStyle={{backgroundColor: '#ff4f00', borderRadius: 10}}
           textStyle={{textAlign: 'center'}}
-          title={`Welcome to\nReact Native Elements`}
+          title={`Submit`}
         />
       </View>
     );
@@ -63,8 +62,9 @@ class SignIn extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 6,
-    justifyContent: 'center',
-    alignItems: 'stretch',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    //alignItems: 'stretch',
     backgroundColor: 'white',
     padding: 10,
   },
