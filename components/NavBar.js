@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   headerTitle: {
-    fontSize: 16,
     paddingLeft: 30,
     fontWeight: 'bold',
     fontSize: 30,

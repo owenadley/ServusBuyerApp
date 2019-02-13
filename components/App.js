@@ -12,6 +12,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import NavBar from 'C:\\Users\\Owen\\Desktop\\Local\\Dev\\Capstone\\components\\NavBar.js';
 import SignIn from './SignIn.js';
 
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -23,12 +24,12 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={{flex:1}}>
+      <View style={{flex:1,flexDirection: 'column'}}>
         <NavBar />
         <View style={styles.container}>
           <Text style={styles.welcome}>Welcome</Text>
-          <SignIn />
         </View>
+        <SignIn />
       </View>
     );
   }
@@ -36,16 +37,10 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 10,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'skyblue',
-  },
-  header: {
-    flex: 1,
-    backgroundColor: 'steelblue',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
   },
   headerTitle: {
     fontSize: 16,

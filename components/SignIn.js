@@ -10,49 +10,72 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Button, Input} from 'react-native-elements';
 //const SignInForm = tc.form.Form;
 
 //type Props = {};
 class SignIn extends Component {
   render() {
     return (
-  //    <View style={styles.formWrap}>
-    //    <Text>Sign In - test</Text>
-    //  <FormLabel> Name </FormLabel>
-        //<FormInput />
-    //    <FormValidationMessage>Error message</FormValidationMessage>
-  //    </View>
+      <View style={styles.container}>
+        <View style={styles.signin}>
 
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Task It</Text>
+          <Text style={styles.subtitle}>Sign In</Text>
+          <Input
+            placeholder='email'
+            label='Enter Email'
+            leftIcon={
+              <Icon
+                name='user'
+                size={24}
+                color='black'
+              />
+            }
+          />
+
+          <Input
+            placeholder='password'
+            label='Enter Password'
+            leftIcon={
+              <Icon
+                name='user'
+                size={24}
+                color='black'
+              />
+            }
+          />
+
+        </View>
+        <Button
+          raised
+          icon={{name: 'home', size: 32}}
+          buttonStyle={{backgroundColor: '#ff4f00', borderRadius: 10}}
+          textStyle={{textAlign: 'center'}}
+          title={`Welcome to\nReact Native Elements`}
+        />
       </View>
     );
   }
 }
 
 
-//const User = tc.struct({
-//  email: tc.String,
-//  username: tc.String,
-//  password: tc.String,
-//});
-
 const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    backgroundColor: 'steelblue',
+  container: {
+    flex: 6,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'stretch',
+    backgroundColor: 'white',
+    padding: 10,
   },
-  headerTitle: {
-    fontSize: 16,
-    paddingLeft: 30,
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: '#fff',
+  signin: {
+    backgroundColor: '#f5f6fa',
+    marginBottom: 8,
   },
+  subtitle: {
+    fontSize: 20,
+    textAlign: 'center',
+  }
 });
 
 export default SignIn;
