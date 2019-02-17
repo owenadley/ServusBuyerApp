@@ -1,12 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
@@ -16,11 +7,15 @@ import {Button, Input} from 'react-native-elements';
 
 //type Props = {};
 class SignIn extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.signin}>
-
+      <View style={st.container}>
+        <View>
+          <Text style={st.heading1}>Sign in</Text>
           <Input
             placeholder='you@example.com'
             label='Email'
@@ -34,7 +29,7 @@ class SignIn extends Component {
           />
 
           <Input
-            placeholder='abc'
+            placeholder='*******'
             label='Password'
             leftIcon={
               <Icon
@@ -49,33 +44,15 @@ class SignIn extends Component {
         <Button
           raised
           icon={{name: 'home', size: 32}}
-          buttonStyle={{backgroundColor: '#ff4f00', borderRadius: 10}}
+          buttonStyle={{backgroundColor: '#5eb9ff', borderRadius: 10}}
           textStyle={{textAlign: 'center'}}
-          title={`Submit`}
+          title={`Sign in`}
         />
       </View>
     );
   }
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 6,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    //alignItems: 'stretch',
-    backgroundColor: 'white',
-    padding: 10,
-  },
-  signin: {
-    backgroundColor: '#f5f6fa',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 20,
-    textAlign: 'center',
-  }
-});
+const st = require('./style');
 
 export default SignIn;
