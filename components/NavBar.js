@@ -24,7 +24,7 @@ class NavBar extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
+    flex: 0.5,
     backgroundColor: 'steelblue',
     justifyContent: 'center',
     alignItems: 'flex-start',
