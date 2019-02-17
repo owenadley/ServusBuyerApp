@@ -9,7 +9,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import NavBar from 'C:\\Users\\Owen\\Desktop\\Local\\Dev\\Capstone\\components\\NavBar.js';
+import NavBar from './NavBar.js';
 import SignIn from './SignIn.js';
 
 
