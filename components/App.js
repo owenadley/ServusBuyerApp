@@ -3,15 +3,17 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import NavBar from './NavBar.js';
 import Register from './Register.js'
 import SignIn from './SignIn.js';
+import Example from './Example.js';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={{flex:1,flexDirection: 'column'}}>
+      <Example/>
+      /*<View style={{flex:1,flexDirection: 'column'}}>
         <NavBar />
         <Register />
-      </View>
+      </View>*/
     );
   }
 }
