@@ -9,11 +9,11 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Example/>
-      /*<View style={{flex:1,flexDirection: 'column'}}>
+      /*<Example/>*/
+      <View style={{flex:1,flexDirection: 'column'}}>
         <NavBar />
         <Register />
-      </View>*/
+      </View>
     );
   }
 }
