@@ -35,9 +35,6 @@ class Example extends Component {
         });
     }
 
-
-
-
    render() {
       return (
          <View>
