@@ -6,20 +6,23 @@ class Example extends Component {
       data: ''
    }
    componentDidMount = () => {
-      fetch('http://localhost:8080/api/users?username=tkang042&password=testing', {
-         method: 'GET'
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-         console.log(responseJson);
-         this.setState({
-            data: responseJson
-         })
-      })
-      .catch((error) => {
-         console.error(error);
+      fetch('http://localhost:8080/api/users', {
+         method: 'POST',
+         headers: {
+           Accept: 'application/json',
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+           username: 'owen',
+           password: 'pass',
+         }),
+
       });
    }
+
+
+
+
    render() {
       return (
          <View>
