@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-
+import Register from './Register.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button, Input} from 'react-native-elements';
+import NavBar from './NavBar.js';
 //const SignInForm = tc.form.Form;
 
 //type Props = {};
@@ -11,9 +12,15 @@ class SignIn extends Component {
     super(props);
   }
 
+  static navigationOptions = {
+    title: 'Servus',
+  };
+
   render() {
     return (
+
       <View style={st.container}>
+
         <View>
           <Text style={st.heading1}>Sign in</Text>
           <Input
@@ -48,6 +55,11 @@ class SignIn extends Component {
           textStyle={{textAlign: 'center'}}
           title={`Sign in`}
         />
+        <Button
+          title="Register"
+          onPress={() => this.props.navigation.navigate('Register')}
+        />
+
       </View>
     );
   }

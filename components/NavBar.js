@@ -16,7 +16,7 @@ class NavBar extends Component {
   render() {
     return (
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Task It</Text>
+        <Text style={styles.headerTitle}>Servus</Text>
       </View>
     );
   }

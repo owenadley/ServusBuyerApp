@@ -19,6 +19,10 @@ class Register extends Component {
     this.publish = this.publish.bind(this);
   }
 
+  static navigationOptions = {
+    title: 'Servus',
+  };
+
    componentDidMount(){
      //this.publish();
    }
