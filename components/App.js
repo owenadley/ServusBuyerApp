@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
-import Register from './Register.js'
-import ContinueWithPassword from './ContinueWithPassword.js'
+import Register from './Register.js';
+import ContinueWithPassword from './ContinueWithPassword.js';
+import CreateAccount from './CreateAccount.js';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 
@@ -20,11 +21,12 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 
 
-
+// root stack defining screens in navigation stack
 const RootStack = createStackNavigator(
   {
     Register: {screen: Register},
     ContinueWithPassword: {screen: ContinueWithPassword},
+    CreateAccount: {screen: CreateAccount},
   }
 );
 
