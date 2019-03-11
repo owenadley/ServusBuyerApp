@@ -32,7 +32,30 @@ class CreateAccount extends Component {
           email: email,
           type: this.state.type
        }),
-    });
+      });
+
+      fetch('http://localhost:8080/api/getEmailExists/?email=' + email)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          accountExists: responseJson.accountExists,
+          firstName: responseJson.firstName
+        }, function(){
+          if(this.state.accountExists){
+            this.props.navigation.navigate('Home', {
+              firstName: this.state.firstName,
+              email: this.state.email
+            })
+          } else {
+            //navigate to Create Account
+            alert("Something went wrong");
+
+          }
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
   }
 
   render() {
