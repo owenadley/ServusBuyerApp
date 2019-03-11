@@ -8,6 +8,62 @@ import {Button, Input} from 'react-native-elements';
 
 //type Props = {};
 class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+     username: '',
+     password: '',
+     email: '',
+     type: 0,
+     accountExists: '',
+     firstName: '',
+    }
+  }
+
+  static navigationOptions = {
+    title: 'Servus',
+  };
+
+   continueWithEmail = () => {
+    fetch('http://localhost:8080/api/getEmailExists/?email=' + this.state.email)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        accountExists: responseJson.accountExists,
+        firstName: responseJson.firstName
+      }, function(){
+        if(this.state.accountExists){
+          this.props.navigation.navigate('ContinueWithPassword', {
+            firstName: this.state.firstName,
+            email: this.state.email
+          })
+        } else{
+          //navigate to Create Account
+        }
+      });
+    })
+    .catch((error) =>{
+      console.error(error);
+    });
+   }
+
+   publish = () => {
+    fetch('http://localhost:8080/api/postUsers', {
+       method: 'POST',
+       headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email,
+          type: this.state.type
+       }),
+    });
+  }
+
+
   render() {
     return (
       <View style={st.container}>
@@ -27,7 +83,9 @@ class Register extends Component {
 
         <Text style={st.heading2}> Or continue with E-mail </Text>
         <Input
+            type="text"
             placeholder='E-mail'
+            onChangeText={(text) => this.setState({email: text})}
             leftIcon={
               <Icon2
                 name='email-outline'
@@ -37,23 +95,14 @@ class Register extends Component {
             }
           />
 
-          <Input
-            placeholder='Password'
-            leftIcon={
-              <Icon
-                name='lock'
-                size={24}
-                color='black'
-              />
-            }
-          />
         <Button
           raised
           buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
           textStyle={{textAlign: 'center'}}
           title={`Continue`}
+          onPress={ this.continueWithEmail.bind() }
         />
-        
+
 
 
       </View>
