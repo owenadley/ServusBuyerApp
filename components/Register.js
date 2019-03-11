@@ -15,17 +15,38 @@ class Register extends Component {
      password: '',
      email: '',
      type: 0,
+     accountExists: '',
+     firstName: '',
     }
-    this.publish = this.publish.bind(this);
   }
 
   static navigationOptions = {
     title: 'Servus',
   };
 
-   componentDidMount(){
-     //this.publish();
+   continueWithEmail = () => {
+    fetch('http://localhost:8080/api/getEmailExists/?email=' + this.state.email)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        accountExists: responseJson.accountExists,
+        firstName: responseJson.firstName
+      }, function(){
+        if(this.state.accountExists){
+          this.props.navigation.navigate('ContinueWithPassword', {
+            firstName: this.state.firstName,
+            email: this.state.email
+          })
+        } else{
+          //navigate to Create Account
+        }
+      });
+    })
+    .catch((error) =>{
+      console.error(error);
+    });
    }
+
    publish = () => {
     fetch('http://localhost:8080/api/postUsers', {
        method: 'POST',
@@ -39,7 +60,6 @@ class Register extends Component {
           email: this.state.email,
           type: this.state.type
        }),
-
     });
   }
 
@@ -75,25 +95,12 @@ class Register extends Component {
             }
           />
 
-          <Input
-            type="text"
-            placeholder='Password'
-            value={this.state.password}
-            onChangeText={(text) => this.setState({password: text})}
-            leftIcon={
-              <Icon
-                name='lock'
-                size={24}
-                color='black'
-              />
-            }
-          />
         <Button
           raised
           buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
           textStyle={{textAlign: 'center'}}
           title={`Continue`}
-          onPress={ this.publish }
+          onPress={ this.continueWithEmail.bind() }
         />
 
 

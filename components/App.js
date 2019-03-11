@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
-import NavBar from './NavBar.js';
+import {StyleSheet} from 'react-native';
 import Register from './Register.js'
-import SignIn from './SignIn.js';
-import Example from './Example.js';
+import ContinueWithPassword from './ContinueWithPassword.js'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 
@@ -25,11 +23,8 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const RootStack = createStackNavigator(
   {
-    SignIn: SignIn,
-    Register: Register,
-  },
-  {
-    initialRouteName: 'SignIn',
+    Register: {screen: Register},
+    ContinueWithPassword: {screen: ContinueWithPassword},
   }
 );
 
