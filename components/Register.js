@@ -37,8 +37,13 @@ class Register extends Component {
             firstName: this.state.firstName,
             email: this.state.email
           })
-        } else{
+        } else {
           //navigate to Create Account
+          this.props.navigation.navigate('CreateAccount', {
+            firstName: this.state.firstName,
+            email: this.state.email
+          })
+
         }
       });
     })
@@ -47,21 +52,7 @@ class Register extends Component {
     });
    }
 
-   publish = () => {
-    fetch('http://localhost:8080/api/postUsers', {
-       method: 'POST',
-       headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-          email: this.state.email,
-          type: this.state.type
-       }),
-    });
-  }
+
 
 
   render() {
