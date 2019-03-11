@@ -28,7 +28,10 @@ class ContinueWithPassword extends Component {
         firstName: responseJson.firstName
       }, function(){
         if(this.state.accountExists){
-          alert("Account found!");
+          this.props.navigation.navigate('Home', {
+            firstName: this.state.firstName,
+            email: this.state.email
+          })
         } else {
           alert("Account not found!")
         }
