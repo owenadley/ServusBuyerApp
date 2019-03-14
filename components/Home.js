@@ -25,7 +25,7 @@ class CreateAccount extends Component {
     return (
       <View style={st.container}>
         <Text style={st.heading2}> Welcome to Servus Home Page</Text>
-        <ServicePreview />
+        <ServicePreview navigation={navigation}/>
       </View>
     );
   }
