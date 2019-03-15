@@ -13,10 +13,6 @@ class ContinueWithPassword extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Servus',
-  };
-
   signIn = () => {
     const email = this.props.navigation.getParam("email", "NO-EMAIL")
     fetch('http://localhost:8080/api/signIn/?email=' + email + '&password=' + this.state.password)

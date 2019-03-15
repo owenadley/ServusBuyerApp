@@ -17,10 +17,6 @@ class ServicePreview extends Component {
 
   }
 
-  static navigationOptions = {
-    title: 'Servus',
-  };
-
 
   componentDidMount() {
     fetch('http://localhost:8080/api/getServicePreviews')
