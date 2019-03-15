@@ -31,7 +31,9 @@ class NavigationDrawerStructure extends Component {
   }
 }
 
-const Register_StackNavigator = createStackNavigator({
+
+
+const StackNavigator = createStackNavigator({
   Register: {
     screen: Register,
     navigationOptions: ({ navigation }) => ({
@@ -43,9 +45,6 @@ const Register_StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-});
-
-const ContinueWithPassword_StackNavigator = createStackNavigator({
   ContinueWithPassword: {
     screen: ContinueWithPassword,
     navigationOptions: ({ navigation }) => ({
@@ -57,9 +56,6 @@ const ContinueWithPassword_StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-});
-
-const CreateAccount_StackNavigator = createStackNavigator({
   CreateAccount: {
     screen: CreateAccount,
     navigationOptions: ({ navigation }) => ({
@@ -71,9 +67,6 @@ const CreateAccount_StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-});
-
-const Home_StackNavigator = createStackNavigator({
   Home: {
     screen: Home,
     navigationOptions: ({ navigation }) => ({
@@ -85,9 +78,6 @@ const Home_StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-});
-
-const Service_StackNavigator = createStackNavigator({
   Service: {
     screen: Service,
     navigationOptions: ({ navigation }) => ({
@@ -99,36 +89,38 @@ const Service_StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
+
 });
+
 
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
   Register: {
-    screen: Register_StackNavigator,
+    screen: StackNavigator,
     navigationOptions: {
       drawerLabel: 'Go to Register',
     },
   },
   ContinueWithPassword: {
-    screen: ContinueWithPassword_StackNavigator,
+    screen: ContinueWithPassword,
     navigationOptions: {
       drawerLabel: 'Go to log in',
     },
   },
   CreateAccount: {
-    screen: CreateAccount_StackNavigator,
+    screen: CreateAccount,
     navigationOptions: {
       drawerLabel: 'CreateAccount',
     },
   },
   Home: {
-    screen: Home_StackNavigator,
+    screen: Home,
     navigationOptions: {
       drawerLabel: 'Home',
     },
   },
   Service: {
-    screen: Service_StackNavigator,
+    screen: Service,
     navigationOptions: {
       drawerLabel: 'Service',
     },

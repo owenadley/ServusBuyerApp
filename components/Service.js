@@ -10,7 +10,11 @@ class Service extends Component {
     super(props);
     this.state = {
       serviceInfo: [],
-      serviceName: ''
+      serviceName: '',
+      serviceDescription: '',
+      sellerName: '',
+      minPrice: 0,
+      maxPrice: 0,
     }
   }
 
@@ -25,8 +29,10 @@ class Service extends Component {
       }, function(){
         if(this.state.serviceInfo){
           this.setState({serviceName: this.state.serviceInfo[0].serviceName});
-          //var serviceCount = Object.keys(this.state.serviceInfo);
-          //alert(this.state.serviceInfo[0].serviceName);
+          this.setState({serviceDescription: this.state.serviceInfo[0].serviceDescription});
+          this.setState({sellerName: this.state.serviceInfo[0].sellerName});
+          this.setState({minPrice: this.state.serviceInfo[0].minPrice});
+          this.setState({maxPrice: this.state.serviceInfo[0].maxPrice});
         } else {
           //navigate to Create Account
           alert("Something went wrong");
@@ -44,7 +50,10 @@ class Service extends Component {
     const { navigation } = this.props;
     return (
       <View style={st.container}>
-          <Text>{this.state.serviceName}</Text>
+          <Text style={st.heading1}>{this.state.serviceName}</Text>
+          <Text style={st.heading2}>Seller: {this.state.sellerName}</Text>
+          <Text style={st.heading2}>Description: {this.state.serviceDescription}</Text>
+          <Text style={st.heading2}>Price Range: {this.state.minPrice} - {this.state.maxPrice}</Text>
       </View>
     );
   }

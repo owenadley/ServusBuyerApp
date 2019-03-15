@@ -13,6 +13,10 @@ class ContinueWithPassword extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: 'Servus',
+  };
+
   signIn = () => {
     const email = this.props.navigation.getParam("email", "NO-EMAIL")
     fetch('http://localhost:8080/api/signIn/?email=' + email + '&password=' + this.state.password)
@@ -24,11 +28,11 @@ class ContinueWithPassword extends Component {
         firstName: responseJson.firstName
       }, function(){
         if(this.state.accountExists){
+          alert("Account found!");
           this.props.navigation.navigate('Home', {
-            firstName: this.state.firstName,
-            email: this.state.email
+            firstName: this.state.firstName
           })
-        } else {
+        } else{
           alert("Account not found!")
         }
       });
@@ -41,7 +45,7 @@ class ContinueWithPassword extends Component {
 
   render() {
     const { navigation } = this.props;
-   const firstName = JSON.parse(JSON.stringify(navigation.getParam('firstName', 'NO-NAME')));
+    const firstName = JSON.parse(JSON.stringify(navigation.getParam('firstName', 'NO-NAME')));
     return (
       <View style={st.container}>
         <Text style={st.heading1}> Hi, {firstName} </Text>
