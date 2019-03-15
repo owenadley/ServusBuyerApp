@@ -14,11 +14,6 @@ class Service extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Servus',
-  };
-
-
   componentDidMount() {
     const { navigation } = this.props;
     const id = JSON.parse(JSON.stringify(navigation.getParam('selectedService', 'NO-NAME')));

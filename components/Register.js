@@ -4,7 +4,6 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input} from 'react-native-elements';
-//const SignInForm = tc.form.Form;
 
 //type Props = {};
 class Register extends Component {
@@ -19,10 +18,6 @@ class Register extends Component {
      firstName: '',
     }
   }
-
-  static navigationOptions = {
-    title: 'Servus',
-  };
 
    continueWithEmail = () => {
     fetch('http://localhost:8080/api/getEmailExists/?email=' + this.state.email)

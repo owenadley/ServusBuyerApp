@@ -14,10 +14,6 @@ class CreateAccount extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Servus',
-  };
-
    createAccount = () => {
     const email = this.props.navigation.getParam("email", "NO-EMAIL")
     fetch('http://localhost:8080/api/postUsers', {

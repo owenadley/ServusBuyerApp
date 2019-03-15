@@ -14,10 +14,6 @@ class CreateAccount extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Servus',
-  };
-
 
   render() {
     const { navigation } = this.props;
