@@ -8,6 +8,7 @@ import CreateAccount from './CreateAccount.js';
 import Home from './Home.js';
 import Service from './Service.js';
 import ServicePreview from './ServicePreview.js';
+import ViewAccount from './ViewAccount.js';
 
 
 class NavigationDrawerStructure extends Component {
@@ -33,98 +34,91 @@ class NavigationDrawerStructure extends Component {
 
 
 
-const StackNavigator = createStackNavigator({
-  Register: {
-    screen: Register,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-      headerTintColor: '#000000',
-    }),
-  },
-  ContinueWithPassword: {
-    screen: ContinueWithPassword,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-      headerTintColor: '#000000',
-    }),
-  },
-  CreateAccount: {
-    screen: CreateAccount,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-      headerTintColor: '#000000',
-    }),
-  },
-  Home: {
-    screen: Home,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-      headerTintColor: '#000000',
-    }),
-  },
-  Service: {
-    screen: Service,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#ffffff',
-      },
-      headerTintColor: '#000000',
-    }),
-  },
-
-});
-
-
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
-  Register: {
-    screen: StackNavigator,
-    navigationOptions: {
-      drawerLabel: 'Go to Register',
-    },
-  },
-  ContinueWithPassword: {
-    screen: ContinueWithPassword,
-    navigationOptions: {
-      drawerLabel: 'Go to log in',
-    },
-  },
-  CreateAccount: {
-    screen: CreateAccount,
-    navigationOptions: {
-      drawerLabel: 'CreateAccount',
-    },
-  },
+
   Home: {
     screen: Home,
     navigationOptions: {
       drawerLabel: 'Home',
     },
   },
-  Service: {
-    screen: Service,
+  ViewAccount: {
+    screen: ViewAccount,
     navigationOptions: {
-      drawerLabel: 'Service',
+      drawerLabel: 'ViewAccount',
     },
   },
+
 });
 
-export default createAppContainer(DrawerNavigatorExample);
+const StackNavigator = createStackNavigator({
+  Register: {
+    screen: Register,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  ContinueWithPassword: {
+    screen: ContinueWithPassword,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  CreateAccount: {
+    screen: CreateAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  Home: {
+    screen: DrawerNavigatorExample,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  Service: {
+    screen: Service,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  ViewAccount: {
+    screen: ViewAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+
+});
+export default createAppContainer(StackNavigator);
