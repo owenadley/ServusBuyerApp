@@ -38,7 +38,7 @@ const StackNavigator = createStackNavigator({
     screen: Register,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#ffffff',
       },
@@ -49,7 +49,7 @@ const StackNavigator = createStackNavigator({
     screen: ContinueWithPassword,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#ffffff',
       },
@@ -60,7 +60,7 @@ const StackNavigator = createStackNavigator({
     screen: CreateAccount,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#ffffff',
       },
@@ -82,7 +82,7 @@ const StackNavigator = createStackNavigator({
     screen: Service,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#ffffff',
       },
@@ -119,12 +119,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
       drawerLabel: 'Home',
     },
   },
-  Service: {
-    screen: Service,
-    navigationOptions: {
-      drawerLabel: 'Service',
-    },
-  },
+
 });
 
 export default createAppContainer(DrawerNavigatorExample);
