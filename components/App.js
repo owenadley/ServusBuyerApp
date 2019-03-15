@@ -8,6 +8,7 @@ import CreateAccount from './CreateAccount.js';
 import Home from './Home.js';
 import Service from './Service.js';
 import ServicePreview from './ServicePreview.js';
+import ViewAccount from './ViewAccount.js';
 
 
 class NavigationDrawerStructure extends Component {
@@ -32,6 +33,24 @@ class NavigationDrawerStructure extends Component {
 }
 
 
+
+const DrawerNavigatorExample = createDrawerNavigator({
+  //Drawer Optons and indexing
+
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      drawerLabel: 'Home',
+    },
+  },
+  ViewAccount: {
+    screen: ViewAccount,
+    navigationOptions: {
+      drawerLabel: 'ViewAccount',
+    },
+  },
+
+});
 
 const StackNavigator = createStackNavigator({
   Register: {
@@ -68,7 +87,7 @@ const StackNavigator = createStackNavigator({
     }),
   },
   Home: {
-    screen: Home,
+    screen: DrawerNavigatorExample,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -89,37 +108,17 @@ const StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-
-});
-
-
-const DrawerNavigatorExample = createDrawerNavigator({
-  //Drawer Optons and indexing
-  Register: {
-    screen: StackNavigator,
-    navigationOptions: {
-      drawerLabel: 'Go to Register',
-    },
-  },
-  ContinueWithPassword: {
-    screen: ContinueWithPassword,
-    navigationOptions: {
-      drawerLabel: 'Go to log in',
-    },
-  },
-  CreateAccount: {
-    screen: CreateAccount,
-    navigationOptions: {
-      drawerLabel: 'CreateAccount',
-    },
-  },
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      drawerLabel: 'Home',
-    },
+  ViewAccount: {
+    screen: ViewAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
   },
 
 });
-
-export default createAppContainer(DrawerNavigatorExample);
+export default createAppContainer(StackNavigator);
