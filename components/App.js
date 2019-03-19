@@ -9,6 +9,7 @@ import Home from './Home.js';
 import Service from './Service.js';
 import ServicePreview from './ServicePreview.js';
 import ViewAccount from './ViewAccount.js';
+import BecomeASeller from './BecomeASeller.js';
 
 
 class NavigationDrawerStructure extends Component {
@@ -110,6 +111,17 @@ const StackNavigator = createStackNavigator({
   },
   ViewAccount: {
     screen: ViewAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+  BecomeASeller: {
+    screen: BecomeASeller,
     navigationOptions: ({ navigation }) => ({
       title: 'Servus',
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
