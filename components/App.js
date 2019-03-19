@@ -47,7 +47,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
   ViewAccount: {
     screen: ViewAccount,
     navigationOptions: {
-      drawerLabel: 'ViewAccount',
+      drawerLabel: 'Your Account',
     },
   },
 

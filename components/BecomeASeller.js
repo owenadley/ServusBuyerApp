@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, Scroll, ScrollView, AsyncStorage} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +17,7 @@ class BecomeASeller extends Component {
       sellerName: '',
       minPrice: 0,
       maxPrice: 0,
+      proximity: 0,
       data: [
         {
              label: 'Lawn Mowing',
@@ -41,31 +42,122 @@ class BecomeASeller extends Component {
     }
   }
 
+  becomeASeller = () => {
+    //alert('here');
+    AsyncStorage.getItem('id', (err, result) => {
+      let selectedButton = this.state.data.find(e => e.selected == true);
+      selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
+      fetch('http://localhost:8080/api/postService', {
+         method: 'POST',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            sellerId: result,
+            sellerName: this.state.sellerName,
+            serviceName: selectedButton,
+            serviceDescription: this.state.serviceDescription,
+            minPrice: this.state.minPrice,
+            maxPrice: this.state.maxPrice,
+         }),
+        });
+        alert("Your service has been created.");
+        this.props.navigation.navigate('Home', {
+
+        });
+
+    });
+  }
+
   // update state
   onPress = data => this.setState({ data });
 
   render() {
     const { navigation } = this.props;
-    let selectedButton = this.state.data.find(e => e.selected == true);
-    selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
 
     return (
-      <View style={st.container}>
+      <ScrollView>
           <Text style={st.heading1}>Become A Seller</Text>
           <Text style={st.heading2}>Please choose the service you wish to offer</Text>
 
           <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
 
-          
+
+          <Input
+              type="text"
+              label='Name'
+              placeholder='Enter your seller or company name'
+              onChangeText={(text) => this.setState({sellerName: text})}
+              leftIcon={
+                <Icon2
+                  name='earth-outline'
+                  size={24}
+                  color='black'
+                />
+              }
+            />
+          <Input
+              type="text"
+              label='Proximity (km)'
+              placeholder='How far are you willing to travel?'
+              onChangeText={(text) => this.setState({proximity: text})}
+              leftIcon={
+                <Icon2
+                  name='earth-outline'
+                  size={24}
+                  color='black'
+                />
+              }
+            />
+            <Input
+                type="text"
+                label='Minimum Price (CAD$)'
+                placeholder='The cheapest you will offer your service for'
+                onChangeText={(text) => this.setState({minPrice: text})}
+                leftIcon={
+                  <Icon2
+                    name='currency-usd-outline'
+                    size={24}
+                    color='black'
+                  />
+                }
+              />
+              <Input
+                  type="text"
+                  label='Maximum Price (CAD$)'
+                  placeholder='The largest job you are willing to take on'
+                  onChangeText={(text) => this.setState({maxPrice: text})}
+                  leftIcon={
+                    <Icon2
+                      name='currency-usd-outline'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                />
+                <Input
+                    type="text"
+                    label='Decription'
+                    placeholder='Give a description of what you are offering'
+                    onChangeText={(text) => this.setState({description: text})}
+                    leftIcon={
+                      <Icon2
+                        name='note-text-outline'
+                        size={24}
+                        color='black'
+                      />
+                    }
+                  />
 
           <Button
             raised
             buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
             textStyle={{textAlign: 'center'}}
             title={`Continue`}
-
+            onPress={ this.becomeASeller.bind() }
           />
-      </View>
+      </ScrollView>
     );
   }
 }
