@@ -6,17 +6,17 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input, Card} from 'react-native-elements';
 
 class ViewAccount extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      serviceInfo: [],
-      serviceName: '',
-      serviceDescription: '',
-      sellerName: '',
-      minPrice: 0,
-      maxPrice: 0,
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     serviceInfo: [],
+  //     serviceName: '',
+  //     serviceDescription: '',
+  //     sellerName: '',
+  //     minPrice: 0,
+  //     maxPrice: 0,
+  //   }
+  //}
 
 
   becomeASeller = () => {
@@ -30,6 +30,7 @@ class ViewAccount extends Component {
 
   render() {
     const { navigation } = this.props;
+
     return (
       <View style={st.container}>
           <Text style={st.heading1}>Your Account</Text>
