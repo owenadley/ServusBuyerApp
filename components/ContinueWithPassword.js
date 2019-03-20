@@ -30,8 +30,8 @@ class ContinueWithPassword extends Component {
         id: responseJson.id,
       }, function(){
         if(this.state.accountExists){
-          //alert(this.state.id);
-           AsyncStorage.setItem('id', ''+this.state.id);
+          alert(this.state.id);
+           AsyncStorage.setItem('userId', ''+this.state.id);
 
           this.props.navigation.navigate('Home', {
             firstName: this.state.firstName,

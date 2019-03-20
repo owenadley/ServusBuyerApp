@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {createDrawerNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
+import {createSwitchNavigator, createDrawerNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
 
 import Register from './Register.js';
 import ContinueWithPassword from './ContinueWithPassword.js';
@@ -10,6 +10,7 @@ import Service from './Service.js';
 import ServicePreview from './ServicePreview.js';
 import ViewAccount from './ViewAccount.js';
 import BecomeASeller from './BecomeASeller.js';
+import AuthLoadingScreen from './AuthLoadingScreen.js';
 
 
 class NavigationDrawerStructure extends Component {
@@ -53,7 +54,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
 
 });
 
-const StackNavigator = createStackNavigator({
+const AuthStack = createStackNavigator({
   Register: {
     screen: Register,
     navigationOptions: ({ navigation }) => ({
@@ -87,6 +88,9 @@ const StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
+})
+
+const AppStack = createStackNavigator({
   Home: {
     screen: DrawerNavigatorExample,
     navigationOptions: ({ navigation }) => ({
@@ -131,6 +135,15 @@ const StackNavigator = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
-
 });
-export default createAppContainer(StackNavigator);
+
+const switchNavigator = createSwitchNavigator({
+  AuthLoading: AuthLoadingScreen,
+  App: AppStack,
+  Auth: AuthStack,
+},
+{
+  initialRouteName: 'AuthLoading',
+})
+
+export default createAppContainer(switchNavigator);

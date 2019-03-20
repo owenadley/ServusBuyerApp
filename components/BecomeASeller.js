@@ -44,7 +44,7 @@ class BecomeASeller extends Component {
 
   becomeASeller = () => {
     //alert('here');
-    AsyncStorage.getItem('id', (err, result) => {
+    AsyncStorage.getItem('userId', (err, result) => {
       let selectedButton = this.state.data.find(e => e.selected == true);
       selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
       fetch('http://localhost:8080/api/postService', {
