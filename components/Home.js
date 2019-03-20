@@ -19,7 +19,7 @@ class CreateAccount extends Component {
     const { navigation } = this.props;
     const firstName = JSON.parse(JSON.stringify(navigation.getParam('firstName', 'NO-NAME')));
     const id = JSON.parse(JSON.stringify(navigation.getParam('id', 'NO-NAME')));
-    AsyncStorage.getItem('id', (err, result) => {
+    AsyncStorage.getItem('userId', (err, result) => {
       //alert(result);
     });
     return (
