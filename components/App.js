@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {createSwitchNavigator, createDrawerNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
+import {View, StyleSheet, Image, Text, Button, TouchableOpacity, ScrollView, AsyncStorage} from 'react-native';
+import {createSwitchNavigator, createDrawerNavigator, createStackNavigator, createAppContainer, SafeAreaView, DrawerItems} from 'react-navigation';
 
 import Register from './Register.js';
 import ContinueWithPassword from './ContinueWithPassword.js';
@@ -18,6 +18,9 @@ class NavigationDrawerStructure extends Component {
   toggleDrawer = () => {
     this.props.navigationProps.toggleDrawer();
   };
+
+
+
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
@@ -32,6 +35,7 @@ class NavigationDrawerStructure extends Component {
       </View>
     );
   }
+
 }
 
 
@@ -51,6 +55,25 @@ const DrawerNavigatorExample = createDrawerNavigator({
       drawerLabel: 'Your Account',
     },
   },
+}, {
+    contentComponent: props =>
+    <View style={{flex:1}}>
+        <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+            <DrawerItems {...props} />
+
+            <Button
+              title='Sign Out'
+              onPress={async () => {
+                try {
+                  await AsyncStorage.removeItem('id');
+                  //this.props.navigationProps.navigate('Register');
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
+              />
+        </SafeAreaView>
+    </View>
 
 });
 
