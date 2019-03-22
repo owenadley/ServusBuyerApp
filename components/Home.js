@@ -8,10 +8,13 @@ import {
   SafeAreaView,
   TextInput,
   Platform,
-  StatusBar
+  StatusBar,
+  ScrollView,
+  Image
 } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import ServicePreview from "./ServicePreview.js";
+import Category from "./Category.js";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -65,7 +68,7 @@ class CreateAccount extends Component {
               <Icon name="search" size={40} />
               <TextInput
                 underlineColorAndroid="transparent"
-                placeholder="What are you looking for?"
+                placeholder="Try 'Lawn'"
                 placeholderTextColor="lightgrey"
                 style={{
                   flex: 1,
@@ -76,7 +79,38 @@ class CreateAccount extends Component {
               />
             </View>
           </View>
-          <Text style={st.heading2}> Welcome to Servus </Text>
+          <ScrollView scrollEventThrottle={16}>
+            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
+              <Text
+                style={{
+                  fontSize: 24,
+                  fontWeight: "300",
+                  paddingHorizontal: 20
+                }}
+              >
+                What service can we provide you with?
+              </Text>
+              <View style={{ height: 130, marginTop: 20 }}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  <Category
+                    imageUri={require("../image/LawnMowing.jpg")}
+                    name="Lawn Mowing"
+                  />
+                  <Category
+                    imageUri={require("../image/SnowRemoval.jpg")}
+                    name="Snow Removal"
+                  />
+                  <Category
+                    imageUri={require("../image/CleaningServices.jpg")}
+                    name="Cleaning Services"
+                  />
+                </ScrollView>
+              </View>
+            </View>
+          </ScrollView>
           <ServicePreview navigation={navigation} />
         </View>
       </SafeAreaView>
