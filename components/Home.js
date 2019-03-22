@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, AsyncStorage} from 'react-native';
+import {Platform, StyleSheet, Text, View, AsyncStorage, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input} from 'react-native-elements';
@@ -23,10 +23,10 @@ class CreateAccount extends Component {
       //alert(result);
     });
     return (
-      <View style={st.container}>
+      <ScrollView>
         <Text style={st.heading2}> Welcome to Servus Home Page</Text>
         <ServicePreview navigation={navigation}/>
-      </View>
+      </ScrollView>
     );
   }
 }

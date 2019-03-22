@@ -11,6 +11,7 @@ import ServicePreview from './ServicePreview.js';
 import ViewAccount from './ViewAccount.js';
 import BecomeASeller from './BecomeASeller.js';
 import AuthLoadingScreen from './AuthLoadingScreen.js';
+import MyServices from './MyServices.js';
 
 
 class NavigationDrawerStructure extends Component {
@@ -19,7 +20,9 @@ class NavigationDrawerStructure extends Component {
     this.props.navigationProps.toggleDrawer();
   };
 
-
+  signOut = () => {
+    this.props.navigationProps.navigate('Auth');
+  }
 
   render() {
     return (
@@ -52,7 +55,13 @@ const DrawerNavigatorExample = createDrawerNavigator({
   ViewAccount: {
     screen: ViewAccount,
     navigationOptions: {
-      drawerLabel: 'Your Account',
+      drawerLabel: 'My Account',
+    },
+  },
+  MyServices: {
+    screen: MyServices,
+    navigationOptions: {
+      drawerLabel: 'My Services',
     },
   },
 }, {
@@ -65,8 +74,8 @@ const DrawerNavigatorExample = createDrawerNavigator({
               title='Sign Out'
               onPress={async () => {
                 try {
-                  await AsyncStorage.removeItem('id');
-                  //this.props.navigationProps.navigate('Register');
+                  this.props.navigationProps.navigate('Auth');
+                  alert('dur');
                 } catch (error) {
                   console.log(error);
                 }
