@@ -13,6 +13,7 @@ class BecomeASeller extends Component {
     this.state = {
       serviceInfo: [],
       serviceName: '',
+      serviceCategory: '',
       serviceDescription: '',
       sellerName: '',
       minPrice: 0,
@@ -21,19 +22,16 @@ class BecomeASeller extends Component {
       data: [
         {
              label: 'Lawn Mowing',
-             value: 'LAWNMOW',
              size: 32,
              layout: 'row',
          },
          {
              label: 'Snow Removal',
-             value: "SNOWREMO",
              size: 32,
              layout: 'row',
          },
          {
-             label: 'Cleaning Services',
-             value: 'CLEAN',
+             label: 'Cleaning',
              size: 32,
              layout: 'row',
          },
@@ -47,6 +45,7 @@ class BecomeASeller extends Component {
     AsyncStorage.getItem('userId', (err, result) => {
       let selectedButton = this.state.data.find(e => e.selected == true);
       selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
+    //  alert(selectedButton);
       fetch('http://localhost:8080/api/postService', {
          method: 'POST',
          headers: {
@@ -56,13 +55,14 @@ class BecomeASeller extends Component {
          body: JSON.stringify({
             sellerId: result,
             sellerName: this.state.sellerName,
-            serviceName: selectedButton,
+            serviceCategory: selectedButton,
+            serviceName: this.state.serviceName,
             serviceDescription: this.state.serviceDescription,
             minPrice: this.state.minPrice,
             maxPrice: this.state.maxPrice,
          }),
         });
-        alert("Your service has been created.");
+      //  alert("Your service has been created.");
         this.props.navigation.navigate('Home', {
 
         });
@@ -75,10 +75,12 @@ class BecomeASeller extends Component {
 
   render() {
     const { navigation } = this.props;
+    let selectedButton = this.state.data.find(e => e.selected == true);
+    selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
 
     return (
       <ScrollView>
-          <Text style={st.heading1}>Become A Seller</Text>
+          <Text style={st.heading1}>Sell A Service</Text>
           <Text style={st.heading2}>Please choose the service you wish to offer</Text>
 
           <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
@@ -86,7 +88,7 @@ class BecomeASeller extends Component {
 
           <Input
               type="text"
-              label='Name'
+              label='Seller Name'
               placeholder='Enter your seller or company name'
               onChangeText={(text) => this.setState({sellerName: text})}
               leftIcon={
@@ -97,6 +99,19 @@ class BecomeASeller extends Component {
                 />
               }
             />
+            <Input
+                type="text"
+                label='Service Name'
+                placeholder='Enter the name of your service'
+                onChangeText={(text) => this.setState({serviceName: text})}
+                leftIcon={
+                  <Icon2
+                    name='earth-outline'
+                    size={24}
+                    color='black'
+                  />
+                }
+              />
           <Input
               type="text"
               label='Proximity (km)'
@@ -140,7 +155,7 @@ class BecomeASeller extends Component {
                     type="text"
                     label='Decription'
                     placeholder='Give a description of what you are offering'
-                    onChangeText={(text) => this.setState({description: text})}
+                    onChangeText={(text) => this.setState({serviceDescription: text})}
                     leftIcon={
                       <Icon2
                         name='note-text-outline'

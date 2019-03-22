@@ -27,11 +27,9 @@ class ServicePreview extends Component {
       }, function(){
         if(this.state.servicePreviews){
           var serviceCount = Object.keys(this.state.servicePreviews);
-
         } else {
           //navigate to Create Account
           alert("Something went wrong");
-
         }
       });
     })
@@ -41,30 +39,22 @@ class ServicePreview extends Component {
   }
 
   selectService = (data) => {
-    //alert('data'+data);
-    //alert('state'+this.state.selectedService);
-
-  //  this.setState({selectedService: data});
     if (data !== 0) {
-
       this.props.navigation.navigate('Service', {
         selectedService: data
       });
-
     }
-//    alert(this.state.selectedService);
   }
 
   servicePreviewList() {
     return this.state.servicePreviews.map((data) => {
-      //this.setState({selectedService: data.id});
-      return (
-        <Card
-          title={data.serviceName}>
-          <Text style={{marginBottom: 10}}>
-            {data.serviceDescription}
-          </Text>
 
+      return (
+        <Card>
+          <Text style={{fontSize: 30}}>{data.serviceName}</Text>
+          <Text style={{marginBottom: 10}}>
+             {data.serviceDescription}
+          </Text>
           <Button
             icon={<Icon name='code' color='#ffffff' />}
             backgroundColor='#03A9F4'
