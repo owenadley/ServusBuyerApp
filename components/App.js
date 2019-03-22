@@ -30,15 +30,6 @@ import BecomeASeller from "./BecomeASeller.js";
 import AuthLoadingScreen from "./AuthLoadingScreen.js";
 import MyServices from "./MyServices.js";
 
-import Register from "./Register.js";
-import ContinueWithPassword from "./ContinueWithPassword.js";
-import CreateAccount from "./CreateAccount.js";
-import Home from "./Home.js";
-import Service from "./Service.js";
-import ServicePreview from "./ServicePreview.js";
-import ViewAccount from "./ViewAccount.js";
-import BecomeASeller from "./BecomeASeller.js";
-import AuthLoadingScreen from "./AuthLoadingScreen.js";
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer

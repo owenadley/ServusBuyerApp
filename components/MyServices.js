@@ -24,17 +24,23 @@ class MyServices extends Component {
   componentDidMount() {
     AsyncStorage.getItem('userId', (err, result) => {
 
-      fetch('http://localhost:8080/api/getMyServicePreviews?id=' + result)
+      var encodedID = encodeURIComponent(result);
+
+      fetch(`http://localhost:8080/api/getMyServicePreviews?id=${encodeURIComponent(encodedID)}`, {
+        method: "GET",
+        headers: {
+           Accept: 'application/json',
+           'Content-Type': 'application/json',
+        },
+      })
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
           servicePreviews: responseJson.servicePreviews,
           serviceExists: responseJson.serviceExists
-        });
+        })
       })
-      .catch((error) =>{
-        console.error(error);
-      });
+
 
     });
   }
