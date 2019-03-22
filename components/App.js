@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image, Text, Button, TouchableOpacity, ScrollView, AsyncStorage} from 'react-native';
 import {createSwitchNavigator, createDrawerNavigator, createStackNavigator, createAppContainer, SafeAreaView, DrawerItems} from 'react-navigation';
 
+import NavigationService from './NavigationService.js';
 import Register from './Register.js';
 import ContinueWithPassword from './ContinueWithPassword.js';
 import CreateAccount from './CreateAccount.js';
@@ -41,8 +42,6 @@ class NavigationDrawerStructure extends Component {
 
 }
 
-
-
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
 
@@ -74,8 +73,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
               title='Sign Out'
               onPress={async () => {
                 try {
-                  this.props.navigationProps.navigate('Auth');
-                  alert('dur');
+                  NavigationService.navigate('Auth');
                 } catch (error) {
                   console.log(error);
                 }
@@ -178,4 +176,17 @@ const switchNavigator = createSwitchNavigator({
   initialRouteName: 'AuthLoading',
 })
 
-export default createAppContainer(switchNavigator);
+const AppContainer = createAppContainer(switchNavigator);
+
+export default class App extends React.Component{
+  render(){
+    return(
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
+  }
+}
+
