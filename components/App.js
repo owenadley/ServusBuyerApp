@@ -88,6 +88,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
             title="Sign Out"
             onPress={async () => {
               try {
+                AsyncStorage.clear();
                 NavigationService.navigate("Auth");
               } catch (error) {
                 console.log(error);
