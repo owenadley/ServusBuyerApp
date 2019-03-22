@@ -26,7 +26,7 @@ class Category extends Component {
           borderColor: "#dddddd"
         }}
       >
-        <View style={{ flex: 2 }}>
+        <View style={{ flex: 3 }}>
           <Image
             source={this.props.imageUri}
             style={{
