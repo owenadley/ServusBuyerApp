@@ -4,6 +4,10 @@ import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input, Card} from 'react-native-elements';
+import { StripeAddCard } from 'react-native-checkout';
+import NavigationService from'./NavigationService.js';
+
+
 
 class Service extends Component {
   constructor(props) {
@@ -45,6 +49,10 @@ class Service extends Component {
     });
   }
 
+  //navigate to purchase service screen
+  purchaseService = () => {
+    this.props.navigation.navigate('PurchaseService');
+  }
 
   render() {
     const { navigation } = this.props;
@@ -54,7 +62,11 @@ class Service extends Component {
           <Text style={st.heading2}>Seller: {this.state.sellerName}</Text>
           <Text style={st.heading2}>Description: {this.state.serviceDescription}</Text>
           <Text style={st.heading2}>Price Range: {this.state.minPrice} - {this.state.maxPrice}</Text>
+
+          <Button title='Order Service' onPress={() => this.purchaseService()}/>
       </View>
+
+
     );
   }
 }

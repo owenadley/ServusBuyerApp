@@ -16,7 +16,7 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import ServicePreview from "./ServicePreview.js";
 import Category from "./Category.js";
 
-class CreateAccount extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +26,7 @@ class CreateAccount extends Component {
   }
 
   componentWillMount() {
+
     this.startHeaderHeight = 80;
     if (Platform.OS == "android") {
       this.startHeaderHeight = 100 + StatusBar.currentHeight;
@@ -120,4 +121,4 @@ class CreateAccount extends Component {
 
 const st = require("./style");
 const styles = StyleSheet.create({});
-export default CreateAccount;
+export default Home;

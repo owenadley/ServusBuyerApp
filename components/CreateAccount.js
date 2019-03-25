@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, AsyncStorage} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -35,9 +35,12 @@ class CreateAccount extends Component {
       .then((responseJson) => {
         this.setState({
           accountExists: responseJson.accountExists,
-          firstName: responseJson.firstName
+          firstName: responseJson.firstName,
+          id: responseJson.id
         }, function(){
           if(this.state.accountExists){
+           AsyncStorage.setItem('userId', ''+this.state.id);
+
             this.props.navigation.navigate('Home', {
               firstName: this.state.firstName,
               email: this.state.email
