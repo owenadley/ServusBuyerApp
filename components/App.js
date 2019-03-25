@@ -29,7 +29,9 @@ import ViewAccount from "./ViewAccount.js";
 import BecomeASeller from "./BecomeASeller.js";
 import AuthLoadingScreen from "./AuthLoadingScreen.js";
 import MyServices from "./MyServices.js";
-
+import PurchaseService from './PurchaseService.js';
+import AddNewCard from './AddNewCard.js';
+import ConfirmPurchase from './ConfirmPurchase.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -88,6 +90,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
             title="Sign Out"
             onPress={async () => {
               try {
+                AsyncStorage.clear();
                 NavigationService.navigate("Auth");
               } catch (error) {
                 console.log(error);
@@ -172,6 +175,39 @@ const AppStack = createStackNavigator({
   },
   BecomeASeller: {
     screen: BecomeASeller,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  PurchaseService: {
+    screen: PurchaseService,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  AddNewCard: {
+    screen: AddNewCard,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ConfirmPurchase: {
+    screen: ConfirmPurchase,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
