@@ -77,7 +77,7 @@ class AddNewCard extends Component {
                }
             });
           });
-          this.props.navigation.navigate('PurchaseService');
+          this.props.navigation.goBack();
 
         }}
         styles={{}} // Override default styles <LINK HERE>

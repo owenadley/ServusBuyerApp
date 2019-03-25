@@ -44,6 +44,10 @@ class ViewAccount extends Component {
     });
   }
 
+  paymentInfo = () => {
+    this.props.navigation.navigate('PaymentInfo');
+  }
+
   render() {
     const { navigation } = this.props;
     var style;
@@ -66,6 +70,7 @@ class ViewAccount extends Component {
           <Text style={st.heading2}>{this.state.email}</Text>
           <Input style={style}></Input>
           <Button title='Edit Info' onPress={() => this.editAccountInfo()}/>
+          <Button title='Payment Info' onPress={() => this.paymentInfo()}/>
       </View>
     );
   }

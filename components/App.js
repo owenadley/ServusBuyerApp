@@ -32,6 +32,7 @@ import MyServices from "./MyServices.js";
 import PurchaseService from './PurchaseService.js';
 import AddNewCard from './AddNewCard.js';
 import ConfirmPurchase from './ConfirmPurchase.js';
+import PaymentInfo from './PaymentInfo.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -208,6 +209,17 @@ const AppStack = createStackNavigator({
   },
   ConfirmPurchase: {
     screen: ConfirmPurchase,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  PaymentInfo: {
+    screen: PaymentInfo,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
