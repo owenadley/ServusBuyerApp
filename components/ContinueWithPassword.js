@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, AsyncStorage} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input} from 'react-native-elements';
 
 class ContinueWithPassword extends Component {
@@ -31,6 +30,7 @@ class ContinueWithPassword extends Component {
       }, function(){
         if(this.state.accountExists){
           alert(this.state.id);
+           AsyncStorage.clear();
            AsyncStorage.setItem('userId', ''+this.state.id);
 
           this.props.navigation.navigate('Home', {

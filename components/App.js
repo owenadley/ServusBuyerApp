@@ -13,6 +13,7 @@ import ViewAccount from './ViewAccount.js';
 import BecomeASeller from './BecomeASeller.js';
 import AuthLoadingScreen from './AuthLoadingScreen.js';
 import MyServices from './MyServices.js';
+import CreateLocation from './CreateLocation';
 
 
 class NavigationDrawerStructure extends Component {
@@ -74,6 +75,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
               onPress={async () => {
                 try {
                   NavigationService.navigate('Auth');
+                  AsyncStorage.clear();
                 } catch (error) {
                   console.log(error);
                 }
@@ -118,6 +120,18 @@ const AuthStack = createStackNavigator({
       headerTintColor: '#000000',
     }),
   },
+  CreateLocation: {
+    screen: CreateLocation,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+
 })
 
 const AppStack = createStackNavigator({
