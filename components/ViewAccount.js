@@ -4,6 +4,8 @@ import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput} from '
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input, Card} from 'react-native-elements';
+import ImagePicker from 'react-native-image-picker';
+
 
 class ViewAccount extends Component {
 
@@ -13,7 +15,8 @@ class ViewAccount extends Component {
       name: '',
       email: '',
       password: '',
-      edit: false
+      edit: false,
+      photo: null
     }
   }
 
@@ -35,6 +38,19 @@ class ViewAccount extends Component {
       });
 
     });
+  }
+
+  handleChoosePhoto = () => {
+    const options = {
+      noData: true,
+    }
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        this.setState({ photo: response })
+
+
+      }
+    })
   }
 
   editAccountInfo = () => {
@@ -62,6 +78,7 @@ class ViewAccount extends Component {
       }
     }
 
+    const { photo } = this.state;
     return (
       <View style={st.container}>
           <Text style={st.heading1}>Your Account</Text>
@@ -71,6 +88,14 @@ class ViewAccount extends Component {
           <Input style={style}></Input>
           <Button title='Edit Info' onPress={() => this.editAccountInfo()}/>
           <Button title='Payment Info' onPress={() => this.paymentInfo()}/>
+
+          {photo && (
+            <Image
+              source={{ uri: photo.uri }}
+              style={{ width: 300, height: 300 }}
+            />
+          )}
+          <Button title="Choose Photo" onPress={this.handleChoosePhoto} />
       </View>
     );
   }
