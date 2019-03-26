@@ -33,6 +33,7 @@ import PurchaseService from './PurchaseService.js';
 import AddNewCard from './AddNewCard.js';
 import ConfirmPurchase from './ConfirmPurchase.js';
 import PaymentInfo from './PaymentInfo.js';
+import CreateLocation from './CreateLocation';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -86,7 +87,6 @@ const DrawerNavigatorExample = createDrawerNavigator(
       <View style={{ flex: 1 }}>
         <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
           <DrawerItems {...props} />
-
           <Button
             title="Sign Out"
             onPress={async () => {
@@ -135,10 +135,22 @@ const AuthStack = createStackNavigator({
       headerStyle: {
         backgroundColor: "#ffffff"
       },
-      headerTintColor: "#000000"
-    })
-  }
-});
+      headerTintColor: '#000000',
+    }),
+  },
+  CreateLocation: {
+    screen: CreateLocation,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Servus',
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+    }),
+  },
+
+})
 
 const AppStack = createStackNavigator({
   Home: {
