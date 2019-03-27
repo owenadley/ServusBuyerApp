@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import {
   View,
-  StyleSheet,
   Image,
-  Text,
   Button,
   TouchableOpacity,
-  ScrollView,
   AsyncStorage
 } from "react-native";
 import {
@@ -24,18 +21,17 @@ import ContinueWithPassword from "./ContinueWithPassword.js";
 import CreateAccount from "./CreateAccount.js";
 import Home from "./Home.js";
 import Service from "./Service.js";
-import ServicePreview from "./ServicePreview.js";
 import ViewAccount from "./ViewAccount.js";
 import SellAService from "./SellAService.js";
 import AuthLoadingScreen from "./AuthLoadingScreen.js";
 import MyServices from "./MyServices.js";
-import PurchaseService from './PurchaseService.js';
-import AddNewCard from './AddNewCard.js';
-import ConfirmPurchase from './ConfirmPurchase.js';
-import PaymentInfo from './PaymentInfo.js';
-import CreateLocation from './CreateLocation.js';
-import BecomeASeller from './BecomeASeller.js';
-import CheckoutServiceLawnMowing from './CheckoutServiceLawnMowing.js';
+import PurchaseService from "./PurchaseService.js";
+import AddNewCard from "./AddNewCard.js";
+import ConfirmPurchase from "./ConfirmPurchase.js";
+import PaymentInfo from "./PaymentInfo.js";
+import CreateLocation from "./CreateLocation.js";
+import BecomeASeller from "./BecomeASeller.js";
+import CheckoutServiceLawnMowing from "./CheckoutServiceLawnMowing.js";
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -137,22 +133,21 @@ const AuthStack = createStackNavigator({
       headerStyle: {
         backgroundColor: "#ffffff"
       },
-      headerTintColor: '#000000',
-    }),
+      headerTintColor: "#000000"
+    })
   },
   CreateLocation: {
     screen: CreateLocation,
     navigationOptions: ({ navigation }) => ({
-      title: 'Servus',
+      title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff"
       },
-      headerTintColor: '#000000',
-    }),
-  },
-
-})
+      headerTintColor: "#000000"
+    })
+  }
+});
 
 const AppStack = createStackNavigator({
   Home: {
@@ -264,7 +259,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },
+  }
 });
 
 const switchNavigator = createSwitchNavigator(
