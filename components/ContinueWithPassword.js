@@ -6,7 +6,8 @@ import {
   AsyncStorage,
   Image,
   TextInput,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
