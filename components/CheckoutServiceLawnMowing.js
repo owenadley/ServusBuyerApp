@@ -27,7 +27,10 @@ class CheckoutServiceLawnMowing extends Component {
       username: "",
       stripeCustomer: [],
       refreshing: false,
+      lawnSize: null
     };
+    this.chooseLawnSize = this.chooseLawnSize.bind(this);
+    this.continueToPayment = this.continueToPayment.bind(this);
   }
 
   componentWillMount() {
@@ -42,7 +45,19 @@ class CheckoutServiceLawnMowing extends Component {
     });
   }
 
+  chooseLawnSize = (size) => {
+    //alert('yeet');
+    this.setState({
+      lawnSize: size
+    });
+  }
 
+  continueToPayment = () => {
+  //  alert('here');
+    this.props.navigation.navigate('PurchaseService', {
+
+    });
+  }
 
   render() {
     const { navigation } = this.props;
@@ -50,13 +65,23 @@ class CheckoutServiceLawnMowing extends Component {
     //this.setState({serviceInfo: serviceInfo});
     //alert(this.state.serviceInfo);
     return (
-      <View>
+      <View style={{flex:1}}>
           <Text style={st.heading1}>{serviceInfo[0].serviceName}</Text>
-          <Text>Purchase Service</Text>
-          <Text>Select you lawn size:</Text>
-          <Button title='Small'/>
-          <Button title='Medium'/>
-          <Button title='Large'/>
+          <Text style={st.heading2}>$ {serviceInfo[0].minPrice} - {serviceInfo[0].maxPrice} depending on lawn size</Text>
+          <Text style={st.heading2}>Select you lawn size:</Text>
+          <View style={ {flex: 1, flexDirection: 'row'}}>
+            <View style={{flex:1, height:100, backgroundColor: 'grey'}}>
+              <Button title='SM' onPress={() => this.chooseLawnSize('SM')}/>
+            </View>
+            <View style={{flex:1, height:100, backgroundColor: 'green'}}>
+              <Button title='MD' onPress={() => this.chooseLawnSize('MD')}/>
+            </View>
+            <View style={{flex:1, height:100, backgroundColor: 'steelblue'}}>
+              <Button title='LG' onPress={() => this.chooseLawnSize('LG')}/>
+            </View>
+          </View>
+          <Text style={st.heading2}>Selected Size: {this.state.lawnSize}</Text>
+          <Button title='Place Order' onPress={() => this.continueToPayment()}/>
       </View>
     );
   }
