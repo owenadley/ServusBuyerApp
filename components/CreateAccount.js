@@ -79,7 +79,7 @@ class CreateAccount extends Component {
         </View>
 
         <View style={st.inputContainer}>
-          <Icon
+          <Icon2
             name={"email-outline"}
             size={28}
             color={"rgba(255,255,255,0.7)"}
