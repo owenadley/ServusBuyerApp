@@ -19,6 +19,7 @@ class Service extends Component {
       sellerName: '',
       minPrice: 0,
       maxPrice: 0,
+      serviceCategory: '',
     }
   }
 
@@ -37,6 +38,7 @@ class Service extends Component {
           this.setState({sellerName: this.state.serviceInfo[0].sellerName});
           this.setState({minPrice: this.state.serviceInfo[0].minPrice});
           this.setState({maxPrice: this.state.serviceInfo[0].maxPrice});
+          this.setState({serviceCategory: this.state.serviceInfo[0].serviceCategory});
         } else {
           //navigate to Create Account
           alert("Something went wrong");
@@ -51,7 +53,10 @@ class Service extends Component {
 
   //navigate to purchase service screen
   purchaseService = () => {
-    this.props.navigation.navigate('PurchaseService');
+    //alert('CheckoutService'+this.state.serviceCategory);
+    this.props.navigation.navigate('CheckoutServiceLawnMowing', {
+      serviceInfo: this.state.serviceInfo
+    });
   }
 
   render() {
@@ -65,8 +70,6 @@ class Service extends Component {
 
           <Button title='Order Service' onPress={() => this.purchaseService()}/>
       </View>
-
-
     );
   }
 }
