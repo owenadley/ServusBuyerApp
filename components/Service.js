@@ -53,8 +53,9 @@ class Service extends Component {
 
   //navigate to purchase service screen
   purchaseService = () => {
-    //alert('CheckoutService'+this.state.serviceCategory);
-    this.props.navigation.navigate('CheckoutServiceLawnMowing', {
+
+    var serviceCategory = 'CheckoutService'+this.state.serviceCategory;
+    this.props.navigation.navigate(serviceCategory, {
       serviceInfo: this.state.serviceInfo
     });
   }
