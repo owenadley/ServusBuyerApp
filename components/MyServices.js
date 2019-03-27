@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, RefreshControl} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,31 +18,42 @@ class MyServices extends Component {
       maxPrice: 0,
       servicePreviews: [],
       serviceExists: 0,
+      refreshing: false
     }
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     AsyncStorage.getItem('userId', (err, result) => {
 
-      var encodedID = encodeURIComponent(result);
-
-      fetch(`http://localhost:8080/api/getMyServicePreviews?id=${encodeURIComponent(encodedID)}`, {
-        method: "GET",
-        headers: {
-           Accept: 'application/json',
-           'Content-Type': 'application/json',
-        },
-      })
+      fetch('http://localhost:8080/api/getSellerName/?id=' + result)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({
-          servicePreviews: responseJson.servicePreviews,
-          serviceExists: responseJson.serviceExists
-        })
+        if (responseJson.sellerName == null) {
+          this.setState({
+            sellerName: null,
+          });
+        } else {
+          this.setState({
+            sellerName: responseJson.sellerName,
+          });
+        }
       })
-
+      .catch((error) =>{
+        console.error(error);
+      });
 
     });
+  }
+
+  sellAService = () => {
+    this.props.navigation.navigate('SellAService', {
+    //  firstName: this.state.firstName,
+    //  email: this.state.email
+    })
   }
 
   becomeASeller = () => {
@@ -87,22 +98,39 @@ class MyServices extends Component {
     }
   }
 
+
   render() {
     const { navigation } = this.props;
 
-    return (
-      <View style={st.container}>
-          <Text style={st.heading1}>Active Services</Text>
-          <Button
-          raised
-          buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
-          textStyle={{textAlign: 'center'}}
-          title={`Sell A Service`}
-          onPress={this.becomeASeller.bind()}
-          />
-          {this.servicePreviewList()}
-      </View>
-    );
+    if (this.state.sellerName !== null) {
+      return (
+        <View style={st.container}>
+            <Text style={st.heading1}>{this.state.sellerName}</Text>
+            <Button
+            raised
+            buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
+            textStyle={{textAlign: 'center'}}
+            title={`Sell A Service`}
+            onPress={this.sellAService.bind()}
+            />
+            {this.servicePreviewList()}
+        </View>
+      );
+    } else {
+      if (this.props.navigation.getParam("sellerName")) { this.fetchData(); }
+      return (
+          <View style={st.container}>
+              <Text style={st.heading2}>You have not registered as a seller, yet..</Text>
+              <Button
+              raised
+              buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
+              textStyle={{textAlign: 'center'}}
+              title={`Become A Seller`}
+              onPress={this.becomeASeller.bind()}
+              />
+          </View>
+        );
+    }
   }
 }
 
