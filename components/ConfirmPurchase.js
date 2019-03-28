@@ -23,18 +23,35 @@ class ConfirmPurchase extends Component {
     super(props);
     this.state = {
       password: "",
-      username: ""
+      username: "",
+      serviceInfo: null
     };
+  }
+
+  componentWillMount() {
+    const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
+    this.setState({serviceInfo: serviceInfo});
   }
 
   confirmPurchase = () => {
     AsyncStorage.getItem("userId", (err, result) => {
+
       fetch('http://localhost:8080/api/purchaseService?id=' + result, {
          method: 'POST',
          headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
          },
+         body: JSON.stringify({
+            serviceId: this.state.serviceInfo[0].id,
+            sellerId: this.state.serviceInfo[0].sellerId,
+            sellerName: this.state.serviceInfo[0].sellerName,
+            serviceCategory: this.state.serviceInfo[0].serviceCategory,
+            serviceName: this.state.serviceInfo[0].serviceName,
+            serviceDescription: this.state.serviceInfo[0].serviceDescription,
+            minPrice: this.state.serviceInfo[0].minPrice,
+            maxPrice: this.state.serviceInfo[0].maxPrice,
+         }),
       });
     });
     this.props.navigation.navigate('Home');
@@ -42,11 +59,10 @@ class ConfirmPurchase extends Component {
 
   render() {
     const { navigation } = this.props;
-    AsyncStorage.getItem("userId", (err, result) => {
 
-    });
     return (
       <View style={{flex: 1, marginTop: 20}}>
+        <Text>{this.state.serviceInfo[0].serviceName}</Text>
         <Button title='Order' onPress={() => this.confirmPurchase()}/>
       </View>
     );
