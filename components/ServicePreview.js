@@ -73,9 +73,7 @@ class ServicePreview extends Component {
 
   render() {
     const { navigation } = this.props;
-    return (
-      <ScrollView style={st.container}>{this.servicePreviewList()}</ScrollView>
-    );
+    return <ScrollView>{this.servicePreviewList()}</ScrollView>;
   }
 }
 
