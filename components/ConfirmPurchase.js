@@ -54,7 +54,7 @@ class ConfirmPurchase extends Component {
          }),
       });
     });
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('ServiceOrdered');
   }
 
   render() {

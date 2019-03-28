@@ -46,6 +46,29 @@ class MyServices extends Component {
         console.error(error);
       });
 
+      if (this.state.sellerName != null) {
+
+        fetch('http://localhost:8080/api/getMyServicePreviews/?id=' + result)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.serviceExists == 1) {
+            this.setState({
+              serviceExists: 1,
+              servicePreviews: responseJson.servicePreviews
+            });
+          } else {
+            this.setState({
+              serviceExists: 0,
+            });
+          }
+        })
+        .catch((error) =>{
+          console.error(error);
+        });
+
+
+      }
+
     });
   }
 
