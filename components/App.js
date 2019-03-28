@@ -36,6 +36,7 @@ import PaymentInfo from "./PaymentInfo.js";
 import CreateLocation from "./CreateLocation.js";
 import BecomeASeller from "./BecomeASeller.js";
 import CheckoutServiceLawnMowing from "./CheckoutServiceLawnMowing.js";
+import ServiceOrdered from "./ServiceOrdered";
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -293,6 +294,17 @@ const AppStack = createStackNavigator({
   },
   CheckoutServiceLawnMowing: {
     screen: CheckoutServiceLawnMowing,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ServiceOrdered: {
+    screen: ServiceOrdered,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
