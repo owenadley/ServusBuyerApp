@@ -33,6 +33,8 @@ class Service extends Component {
         serviceInfo: responseJson.serviceInfo
       }, function(){
         if(this.state.serviceInfo){
+          this.setState({serviceId: this.state.serviceInfo[0].id});
+          this.setState({serllerId: this.state.serviceInfo[0].sellerId});
           this.setState({serviceName: this.state.serviceInfo[0].serviceName});
           this.setState({serviceDescription: this.state.serviceInfo[0].serviceDescription});
           this.setState({sellerName: this.state.serviceInfo[0].sellerName});

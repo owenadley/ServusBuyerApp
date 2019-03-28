@@ -26,11 +26,15 @@ class PurchaseService extends Component {
       username: "",
       stripeCustomer: [],
       refreshing: false,
+      serviceInfo: []
     };
   }
 
   componentWillMount() {
     AsyncStorage.getItem('userId', (err, result) => {
+      const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
+      this.setState({serviceInfo: serviceInfo});
+
       var encodedID = encodeURIComponent(result);
       fetch(`http://localhost:8080/api/getStripeCustomer?id=${encodeURIComponent(encodedID)}`, {
         method: "GET",
@@ -78,14 +82,19 @@ class PurchaseService extends Component {
     this.props.navigation.navigate('AddNewCard');
   }
   confirmPurchase = () => {
-    this.props.navigation.navigate('ConfirmPurchase');
+
+    this.props.navigation.navigate('ConfirmPurchase', {
+      serviceInfo: this.state.serviceInfo
+    });
   }
 
   render() {
     const { navigation } = this.props;
+
     AsyncStorage.getItem("userId", (err, result) => {
 
     });
+
     return (
       <ScrollView style={{flex: 1, marginTop: 20}}
         refreshControl={

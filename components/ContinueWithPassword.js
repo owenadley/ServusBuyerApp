@@ -6,7 +6,8 @@ import {
   AsyncStorage,
   Image,
   TextInput,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
@@ -53,7 +54,7 @@ class ContinueWithPassword extends Component {
           },
           function() {
             if (this.state.accountExists) {
-              alert(this.state.id);
+              //alert(this.state.id);
               AsyncStorage.clear();
               AsyncStorage.setItem("userId", "" + this.state.id);
               this.props.navigation.navigate("Home", {
