@@ -80,5 +80,13 @@ module.exports = StyleSheet.create({
     marginTop: 20
   },
   btnText: { color: "#543855", fontSize: 16, textAlign: "center" },
-  btnEye: { position: "absolute", top: 8, right: 37 }
+  btnEye: { position: "absolute", top: 8, right: 37 },
+  btnSignOut: {
+    width: 200,
+    height: 40,
+    borderRadius: 25,
+    backgroundColor: "#E88D72",
+    justifyContent: "center",
+    marginTop: 20
+  }
 });

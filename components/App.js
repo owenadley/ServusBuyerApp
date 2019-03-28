@@ -4,7 +4,10 @@ import {
   Image,
   Button,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView,
+  StyleSheet,
+  Text
 } from "react-native";
 import {
   createSwitchNavigator,
@@ -21,6 +24,7 @@ import ContinueWithPassword from "./ContinueWithPassword.js";
 import CreateAccount from "./CreateAccount.js";
 import Home from "./Home.js";
 import Service from "./Service.js";
+import ServicePreview from "./ServicePreview.js";
 import ViewAccount from "./ViewAccount.js";
 import SellAService from "./SellAService.js";
 import AuthLoadingScreen from "./AuthLoadingScreen.js";
@@ -49,7 +53,7 @@ class NavigationDrawerStructure extends Component {
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image
             source={require("../image/drawer.png")}
-            style={{ width: 25, height: 25, marginLeft: 5 }}
+            style={{ width: 35, height: 35, marginLeft: 8 }}
           />
         </TouchableOpacity>
       </View>
@@ -82,11 +86,35 @@ const DrawerNavigatorExample = createDrawerNavigator(
   },
   {
     contentComponent: props => (
-      <View style={{ flex: 1 }}>
-        <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        forceInset={{ top: "always", horizontal: "never" }}
+      >
+        <View
+          style={{
+            height: 150,
+            backgroundColor: "white",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Image
+            source={require("../image/avatar1.jpg")}
+            style={{ height: 120, width: 120, borderRadius: 60 }}
+          />
+        </View>
+        <ScrollView>
           <DrawerItems {...props} />
-          <Button
-            title="Sign Out"
+        </ScrollView>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: 10
+          }}
+        >
+          <TouchableOpacity
+            style={st.btnSignOut}
             onPress={async () => {
               try {
                 AsyncStorage.clear();
@@ -95,10 +123,13 @@ const DrawerNavigatorExample = createDrawerNavigator(
                 console.log(error);
               }
             }}
-          />
-        </SafeAreaView>
-      </View>
-    )
+          >
+            <Text style={st.btnText}>SIGN OUT</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    ),
+    contentOptions: { activeTintColor: "#E88D72" }
   }
 );
 
@@ -155,6 +186,17 @@ const AppStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ServicePreview: {
+    screen: ServicePreview,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
       },
@@ -286,3 +328,6 @@ export default class App extends React.Component {
     );
   }
 }
+
+const st = require("./style");
+const styles = StyleSheet.create({});

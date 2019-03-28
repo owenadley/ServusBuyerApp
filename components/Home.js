@@ -15,6 +15,7 @@ import {
 import Icon from "react-native-vector-icons/EvilIcons";
 import ServicePreview from "./ServicePreview.js";
 import Category from "./Category.js";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 class Home extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ class Home extends Component {
       this.startHeaderHeight = 100 + StatusBar.currentHeight;
     }
   }
+
+  selectServiceCategory = () => {
+    this.props.navigation.navigate("ServicePreview");
+  };
 
   render() {
     const { navigation } = this.props;
@@ -55,7 +60,7 @@ class Home extends Component {
             <View
               style={{
                 flexDirection: "row",
-                padding: 10,
+                padding: 8,
                 backgroundColor: "white",
                 marginHorizontal: 20,
                 shadowOffset: { width: 0, height: 0 },
@@ -65,7 +70,7 @@ class Home extends Component {
                 marginTop: Platform.OS == "android" ? 25 : null
               }}
             >
-              <Icon name="search" size={40} />
+              <Icon name="search" size={40} style={st.inputIcon} />
               <TextInput
                 underlineColorAndroid="transparent"
                 placeholder="Try 'Lawn'"
@@ -83,12 +88,52 @@ class Home extends Component {
             <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
               <Text
                 style={{
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: "300",
                   paddingHorizontal: 20
                 }}
               >
-                What service can we provide you with?
+                What service are you looking for?
+              </Text>
+              <View style={{ height: 130, marginTop: 20 }}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  <TouchableOpacity
+                    onPress={() => this.selectServiceCategory()}
+                  >
+                    <Category
+                      imageUri={require("../image/LawnMowing.jpg")}
+                      name="Lawn Mowing"
+                    />
+                  </TouchableOpacity>
+                  <Category
+                    imageUri={require("../image/SnowRemoval.jpg")}
+                    name="Snow Removal"
+                  />
+                  <Category
+                    imageUri={require("../image/CleaningServices.jpg")}
+                    name="Cleaning Services"
+                  />
+                  <Category
+                    imageUri={require("../image/HandymanServices.jpg")}
+                    name="Handyman"
+                  />
+                </ScrollView>
+              </View>
+            </View>
+          </ScrollView>
+          <ScrollView scrollEventThrottle={16}>
+            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "300",
+                  paddingHorizontal: 20
+                }}
+              >
+                Top services
               </Text>
               <View style={{ height: 130, marginTop: 20 }}>
                 <ScrollView
@@ -107,11 +152,14 @@ class Home extends Component {
                     imageUri={require("../image/CleaningServices.jpg")}
                     name="Cleaning Services"
                   />
+                  <Category
+                    imageUri={require("../image/HandymanServices.jpg")}
+                    name="Handyman"
+                  />
                 </ScrollView>
               </View>
             </View>
           </ScrollView>
-          <ServicePreview navigation={navigation} />
         </View>
       </SafeAreaView>
     );
