@@ -33,6 +33,10 @@ class Home extends Component {
     }
   }
 
+  selectServiceCategory = () => {
+    this.props.navigation.navigate("ServicePreview");
+  };
+
   render() {
     const { navigation } = this.props;
     const firstName = JSON.parse(
@@ -96,7 +100,9 @@ class Home extends Component {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                 >
-                  <TouchableOpacity onPress={}>
+                  <TouchableOpacity
+                    onPress={() => this.selectServiceCategory()}
+                  >
                     <Category
                       imageUri={require("../image/LawnMowing.jpg")}
                       name="Lawn Mowing"
@@ -127,7 +133,7 @@ class Home extends Component {
                   paddingHorizontal: 20
                 }}
               >
-                Suggested services
+                Top services
               </Text>
               <View style={{ height: 130, marginTop: 20 }}>
                 <ScrollView
@@ -154,7 +160,6 @@ class Home extends Component {
               </View>
             </View>
           </ScrollView>
-          <ServicePreview navigation={navigation} />
         </View>
       </SafeAreaView>
     );
