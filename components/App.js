@@ -38,6 +38,7 @@ import BecomeASeller from "./BecomeASeller.js";
 import CheckoutServiceLawnMowing from "./CheckoutServiceLawnMowing.js";
 import ServiceOrdered from "./ServiceOrdered.js";
 import ViewOrders from "./ViewOrders.js";
+import EditLoginSecurity from "./editLoginSecurity";
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -321,6 +322,17 @@ const AppStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
+  EditLoginSecurity: {
+    screen: EditLoginSecurity,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
   ViewOrders: {
     screen: ViewOrders,
     navigationOptions: ({ navigation }) => ({
@@ -331,7 +343,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  }
+  },
 });
 
 const switchNavigator = createSwitchNavigator(
