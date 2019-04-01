@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput, ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -35,17 +35,38 @@ class ViewOrders extends Component {
   }
 
 
+  getOrders() {
+    return this.state.servicesOrdered.map(data => {
+      return (
+        <Card style={{ height: 30, width: 30 }}>
+          <Text style={{ fontSize: 30 }}>{data.sellerName}</Text>
+          <Text style={{ marginBottom: 10 }}>{data.serviceCategory}</Text>
+          <Button
+            icon={<Icon name="code" color="#ffffff" />}
+            backgroundColor="#03A9F4"
+            buttonStyle={{
+              borderRadius: 0,
+              marginLeft: 0,
+              marginRight: 0,
+              marginBottom: 0
+            }}
+            title="VIEW NOW"
+          />
+        </Card>
+      );
+    });
+  }
 
   render() {
     const { navigation } = this.props;
     var style;
-    alert(this.state.servicesOrdered[0][0].sellerName);
+
     return (
-      <View style={st.container}>
+      <ScrollView>
           <Text style={st.heading1}>Active Orders</Text>
-          <Text style={st.heading2}>{this.state.servicesOrdered[0][0].sellerName} </Text>
+          {this.getOrders()}
           <Text style={st.heading1}>Past Orders</Text>
-      </View>
+      </ScrollView>
     );
   }
 }
