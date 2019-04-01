@@ -36,7 +36,8 @@ import PaymentInfo from "./PaymentInfo.js";
 import CreateLocation from "./CreateLocation.js";
 import BecomeASeller from "./BecomeASeller.js";
 import CheckoutServiceLawnMowing from "./CheckoutServiceLawnMowing.js";
-import ServiceOrdered from "./ServiceOrdered";
+import ServiceOrdered from "./ServiceOrdered.js";
+import ViewOrders from "./ViewOrders.js";
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -82,6 +83,12 @@ const DrawerNavigatorExample = createDrawerNavigator(
       screen: MyServices,
       navigationOptions: {
         drawerLabel: "My Services"
+      }
+    },
+    ViewOrders: {
+      screen: ViewOrders,
+      navigationOptions: {
+        drawerLabel: "My Orders"
       }
     }
   },
@@ -305,6 +312,17 @@ const AppStack = createStackNavigator({
   },
   ServiceOrdered: {
     screen: ServiceOrdered,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ViewOrders: {
+    screen: ViewOrders,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,

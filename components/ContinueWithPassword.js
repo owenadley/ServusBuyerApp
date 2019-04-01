@@ -89,7 +89,7 @@ class ContinueWithPassword extends Component {
           />
           <Text style={st.servus}>Welcome back, {firstName}!</Text>
         </View>
-        <Text style={st.heading2}> To continue, please verify it's you </Text>
+        <Text style={st.heading2}>To continue, please verify it's you</Text>
 
         <View style={st.inputContainer}>
           <Icon
