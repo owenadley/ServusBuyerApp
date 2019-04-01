@@ -44,7 +44,7 @@ class ConfirmPurchase extends Component {
          },
          body: JSON.stringify({
             serviceId: this.state.serviceInfo[0].id,
-            sellerId: this.state.serviceInfo[0].sellerId,
+            sellerId: this.state.serviceInfo[0].sellerID,
             sellerName: this.state.serviceInfo[0].sellerName,
             serviceCategory: this.state.serviceInfo[0].serviceCategory,
             serviceName: this.state.serviceInfo[0].serviceName,
