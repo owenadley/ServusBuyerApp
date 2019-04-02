@@ -14,6 +14,7 @@ class ViewOrders extends Component {
     this.state = {
       servicesOrdered: [],
       refreshing: false,
+      ordersExist: false
     }
   }
 
@@ -29,7 +30,8 @@ class ViewOrders extends Component {
       .then((responseJson) => {
 
         this.setState({
-          servicesOrdered: responseJson.orders
+          servicesOrdered: responseJson.orders,
+          ordersExist: responseJson.ordersExist
         });
       })
       .catch((error) =>{
@@ -57,26 +59,51 @@ class ViewOrders extends Component {
 
   // render all orders purchased by user
   getOrders() {
-    return this.state.servicesOrdered.map(data => {
+    if (this.state.ordersExist) {
+      return this.state.servicesOrdered.map(data => {
+        return (
+          <Card style={{ height: 30, width: 30 }}>
+            <Text style={{ fontSize: 30 }}>{data.sellerName}</Text>
+            <Text style={{ marginBottom: 10 }}>{data.serviceCategory}</Text>
+            <Button
+              icon={<Icon name="code" color="#ffffff" />}
+              backgroundColor="#03A9F4"
+              buttonStyle={{
+                borderRadius: 0,
+                marginLeft: 0,
+                marginRight: 0,
+                marginBottom: 0
+              }}
+              title="VIEW NOW"
+              onPress={() => this.selectOrder(data.id)}
+            />
+          </Card>
+        );
+      });
+    } else {
       return (
-        <Card style={{ height: 30, width: 30 }}>
-          <Text style={{ fontSize: 30 }}>{data.sellerName}</Text>
-          <Text style={{ marginBottom: 10 }}>{data.serviceCategory}</Text>
-          <Button
-            icon={<Icon name="code" color="#ffffff" />}
-            backgroundColor="#03A9F4"
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0
+        <View>
+          <View
+            style={{
+              borderBottomColor: '#E88D72',
+              borderBottomWidth: 5,
+              marginTop: 20,
+              marginBottom: 65
             }}
-            title="VIEW NOW"
-            onPress={() => this.selectOrder(data.id)}
           />
-        </Card>
-      );
-    });
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: "200",
+              paddingHorizontal: 20,
+              marginTop: 15,
+              marginBottom: 15,
+              textAlign: 'center',
+              color: 'grey'
+            }}>You have not placed any orders, yet..</Text>
+          </View>
+      )
+    }
   }
 
   render() {
