@@ -5,7 +5,9 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import { Button, Input, Card } from "react-native-elements";
 import Service from "./Service.js";
-import { ScrollView } from "react-native-gesture-handler";
+import StarRating from "react-native-star-rating";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import ServiceCard from "./ServiceCard.js";
 
 class ServicePreview extends Component {
   constructor(props) {
@@ -51,31 +53,22 @@ class ServicePreview extends Component {
   servicePreviewList() {
     return this.state.servicePreviews.map(data => {
       return (
-        <Card style={{ height: 30, width: 30 }}>
-          <Text style={{ fontSize: 30 }}>{data.serviceName}</Text>
-          <Text style={{ marginBottom: 10 }}>{data.serviceDescription}</Text>
-          <Button
-            icon={<Icon name="code" color="#ffffff" />}
-            backgroundColor="#03A9F4"
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0
-            }}
-            title="VIEW NOW"
-            onPress={() => this.selectService(data.id)}
-          />
-        </Card>
+        <ServiceCard
+          id={data.id}
+          serviceName={data.serviceName}
+          sellerName={data.sellerName}
+          serviceDescription={data.serviceDescription}
+          minPrice={data.minPrice}
+          maxPrice={data.maxPrice}
+          navigation={this.props.navigation}
+        />
       );
     });
   }
 
   render() {
     const { navigation } = this.props;
-    return (
-      <ScrollView style={st.container}>{this.servicePreviewList()}</ScrollView>
-    );
+    return <ScrollView>{this.servicePreviewList()}</ScrollView>;
   }
 }
 

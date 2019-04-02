@@ -119,7 +119,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
           style={{
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: 10
+            paddingBottom: 20
           }}
         >
           <TouchableOpacity

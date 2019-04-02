@@ -29,7 +29,8 @@ module.exports = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
+    paddingBottom: 0
   },
   heading1: {
     fontFamily: "Arial",
@@ -57,7 +58,8 @@ module.exports = StyleSheet.create({
     fontSize: 40,
     fontWeight: "500",
     marginTop: 10,
-    color: "#FF8882"
+    color: "#FF8882",
+    textAlign: "center"
   },
   input: {
     width: WIDTH - 55,
@@ -79,7 +81,12 @@ module.exports = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20
   },
-  btnText: { color: "#543855", fontSize: 16, textAlign: "center" },
+  btnText: {
+    color: "#543855",
+    fontSize: 19,
+    textAlign: "center",
+    fontWeight: "bold"
+  },
   btnEye: { position: "absolute", top: 8, right: 37 },
   btnSignOut: {
     width: 200,

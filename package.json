@@ -11,7 +11,7 @@
     "hoist-non-react-statics": "^3.3.0",
     "native-base": "^2.12.1",
     "react": "16.6.3",
-    "react-native": "^0.58.4",
+    "react-native": "^0.59.1",
     "react-native-awesome-card-io": "^0.8.2",
     "react-native-checkout": "0.0.8",
     "react-native-elements": "^1.0.0",
@@ -20,15 +20,18 @@
     "react-native-image-picker": "^0.28.0",
     "react-native-radio-button-group": "^1.0.2",
     "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-star-rating": "^1.1.0",
+    "react-native-step-indicator": "0.0.9",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.3.2",
+    "rn-viewpager": "^1.2.9",
     "tcomb-form-native": "^0.6.20"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.0.0",
     "jest": "24.0.0",
-    "metro-react-native-babel-preset": "0.51.1",
+    "metro-react-native-babel-preset": "0.51.0",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
