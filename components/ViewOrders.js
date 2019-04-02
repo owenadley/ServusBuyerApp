@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput, ScrollView, RefreshControl} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,11 +12,16 @@ class ViewOrders extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      servicesOrdered: []
+      servicesOrdered: [],
+      refreshing: false,
     }
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     AsyncStorage.getItem('userId', (err, result) => {
 
       fetch('http://localhost:8080/api/getMyOrders/?id=' + result)
@@ -34,7 +39,23 @@ class ViewOrders extends Component {
     });
   }
 
+  // refresh control for refreshing services ordered list
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.fetchData();
+    this.setState({refreshing: false});
+  }
 
+  // navigate to a specific order page once clicked by user
+  selectOrder = data => {
+    if (data !== 0) {
+      this.props.navigation.navigate("Order", {
+        selectedOrder: data
+      });
+    }
+  };
+
+  // render all orders purchased by user
   getOrders() {
     return this.state.servicesOrdered.map(data => {
       return (
@@ -51,6 +72,7 @@ class ViewOrders extends Component {
               marginBottom: 0
             }}
             title="VIEW NOW"
+            onPress={() => this.selectOrder(data.id)}
           />
         </Card>
       );
@@ -62,10 +84,15 @@ class ViewOrders extends Component {
     var style;
 
     return (
-      <ScrollView>
+      <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh}
+        />
+      }>
           <Text style={st.heading1}>Active Orders</Text>
           {this.getOrders()}
-          <Text style={st.heading1}>Past Orders</Text>
       </ScrollView>
     );
   }

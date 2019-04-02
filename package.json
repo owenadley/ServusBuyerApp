@@ -20,6 +20,7 @@
     "react-native-image-picker": "^0.28.0",
     "react-native-radio-button-group": "^1.0.2",
     "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-timeline-listview": "^0.2.3",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.3.2",
     "tcomb-form-native": "^0.6.20"
