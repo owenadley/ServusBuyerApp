@@ -19,11 +19,15 @@ class Category extends Component {
     return (
       <View
         style={{
+          overflow: "hidden",
           height: 130,
           width: 130,
           marginLeft: 20,
           borderWidth: 0.5,
-          borderColor: "#dddddd"
+          borderColor: "#dddddd",
+          borderRadius: 10,
+          borderBottomColor: "lightgreen",
+          borderBottomWidth: 3
         }}
       >
         <View style={{ flex: 3 }}>
