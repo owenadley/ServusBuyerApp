@@ -63,14 +63,19 @@ class Home extends Component {
                 padding: 8,
                 backgroundColor: "white",
                 marginHorizontal: 20,
-                shadowOffset: { width: 0, height: 0 },
-                shadowColor: "black",
-                shadowOpacity: 0.2,
+                borderColor: "lightgrey",
+                borderWidth: 0.75,
+                // shadowOffset: { width: 0, height: 0 },
+                // shadowColor: "black",
+                // shadowOpacity: 0.2,
                 elevation: 1,
-                marginTop: Platform.OS == "android" ? 25 : null
+                marginTop: Platform.OS == "android" ? 25 : null,
+                borderRadius: 30,
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
-              <Icon name="search" size={40} style={st.inputIcon} />
+              <Icon name="search" size={40} />
               <TextInput
                 underlineColorAndroid="transparent"
                 placeholder="Try 'Lawn'"
@@ -79,13 +84,14 @@ class Home extends Component {
                   flex: 1,
                   fontWeight: "300",
                   fontSize: 20,
-                  backgroundColor: "white"
+                  backgroundColor: "white",
+                  borderRadius: 30
                 }}
               />
             </View>
           </View>
           <ScrollView scrollEventThrottle={16}>
-            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
+            <View style={{ flex: 1, paddingTop: 20 }}>
               <Text
                 style={{
                   fontSize: 20,
@@ -125,7 +131,7 @@ class Home extends Component {
             </View>
           </ScrollView>
           <ScrollView scrollEventThrottle={16}>
-            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
+            <View style={{ flex: 1, paddingTop: 20 }}>
               <Text
                 style={{
                   fontSize: 20,
@@ -135,27 +141,12 @@ class Home extends Component {
               >
                 Top services
               </Text>
-              <View style={{ height: 130, marginTop: 20 }}>
+              <View style={{ height: 230, marginTop: 10 }}>
                 <ScrollView
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                 >
-                  <Category
-                    imageUri={require("../image/LawnMowing.jpg")}
-                    name="Lawn Mowing"
-                  />
-                  <Category
-                    imageUri={require("../image/SnowRemoval.jpg")}
-                    name="Snow Removal"
-                  />
-                  <Category
-                    imageUri={require("../image/CleaningServices.jpg")}
-                    name="Cleaning Services"
-                  />
-                  <Category
-                    imageUri={require("../image/HandymanServices.jpg")}
-                    name="Handyman"
-                  />
+                  <ServicePreview navigation={navigation} />
                 </ScrollView>
               </View>
             </View>
