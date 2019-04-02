@@ -39,6 +39,7 @@ import CheckoutServiceLawnMowing from "./CheckoutServiceLawnMowing.js";
 import ServiceOrdered from "./ServiceOrdered.js";
 import ViewOrders from "./ViewOrders.js";
 import EditLoginSecurity from "./editLoginSecurity";
+import Order from './Order.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -335,6 +336,17 @@ const AppStack = createStackNavigator({
   },
   ViewOrders: {
     screen: ViewOrders,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  Order: {
+    screen: Order,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,

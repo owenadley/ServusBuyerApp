@@ -106,7 +106,7 @@ class CreateAccount extends Component {
             type="text"
             placeholder="Name"
             placeholderTextColor={"rgba(255,255,255,0.7)"}
-            onChangeText={text => this.setState({ username: text })}
+            onChangeText={text => this.setState({ name: text })}
             underlineColorAndroid="transparent"
           />
         </View>
