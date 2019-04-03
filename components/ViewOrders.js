@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput, ScrollView, RefreshControl} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TextInput, ScrollView, RefreshControl, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input, Card} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
+import Moment from 'moment';
 
 
 class ViewOrders extends Component {
@@ -62,22 +63,39 @@ class ViewOrders extends Component {
     if (this.state.ordersExist) {
       return this.state.servicesOrdered.map(data => {
         return (
-          <Card style={{ height: 30, width: 30 }}>
-            <Text style={{ fontSize: 30 }}>{data.sellerName}</Text>
-            <Text style={{ marginBottom: 10 }}>{data.serviceCategory}</Text>
-            <Button
-              icon={<Icon name="code" color="#ffffff" />}
-              backgroundColor="#03A9F4"
-              buttonStyle={{
-                borderRadius: 0,
-                marginLeft: 0,
-                marginRight: 0,
-                marginBottom: 0
-              }}
-              title="VIEW NOW"
-              onPress={() => this.selectOrder(data.id)}
-            />
-          </Card>
+        <TouchableOpacity onPress={() => this.selectOrder(data.id)}>
+            <View style={{
+              alignItems: 'center',
+              borderBottomColor: '#E88D72',
+              borderBottomWidth: 1,
+              flex: 1,
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+             }}>
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginLeft: 50
+              }}>
+
+                <Text style={{ fontSize: 30, }}>{data.sellerName}</Text>
+                <Text style={{ marginBottom: 10 }}>{data.serviceCategory}</Text>
+                <Text style={{}}>Ordered {Moment(this.state.dateOrdered).format('MMMM Do')}</Text>
+              </View>
+
+              <Image
+                source={require("../image/LawnMowing.jpg")}
+                style={{
+                  width: 90,
+                  height: 90,
+                  borderRadius: 45,
+                  margin: 20,
+                  marginRight: 40
+                }}
+              />
+
+            </View>
+          </TouchableOpacity>
         );
       });
     } else {
@@ -109,7 +127,7 @@ class ViewOrders extends Component {
   render() {
     const { navigation } = this.props;
     var style;
-
+    Moment.locale('en');
     return (
       <ScrollView
       refreshControl={

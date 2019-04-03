@@ -24,7 +24,7 @@ class Order extends Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    const orderId = JSON.parse(JSON.stringify(navigation.getParam('selectedOrder', 'NO-NAME')));
+    const orderId = JSON.parse(JSON.stringify(navigation.getParam('orderId', 'NO-NAME')));
     AsyncStorage.getItem('userId', (err, result) => {
 
       fetch('http://localhost:8080/api/viewOrder/?id=' + orderId)
@@ -47,8 +47,17 @@ class Order extends Component {
 
   cancelOrder = (orderId) => {
     if (orderId !== 0) {
-      this.props.navigation.navigate("CancelOrder", {
-        orderId: orderId
+
+      fetch('http://localhost:8080/api/cancelOrder/?id=' + orderId)
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
+      this.props.navigation.navigate("ViewOrders", {
       });
     }
   }
@@ -81,7 +90,6 @@ class Order extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-
           <Text
             style={{
               fontSize: 35,
@@ -115,129 +123,24 @@ class Order extends Component {
           }}
         />
 
-        <View style={{
-          alignItems: 'flex-start',
-          marginLeft: 65
-        }}>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: 40
+        <Text
+          style={{
+            fontSize: 33,
+            paddingHorizontal: 20,
+            marginTop: 15,
+            marginBottom: 15,
+            textAlign: 'center',
+            color: '#000'
           }}>
-
-            <Icon name="gears" size={35} color='#E88D72'/>
-
-            <View style={{flexDirection: 'column'}}>
-
-              <Text style={{
-                textAlign: 'left',
-                marginLeft: 15,
-                fontWeight: 'bold',
-                color: '#000',
-                fontSize: 15
-              }}>Type
-              </Text>
-
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "300",
-                  paddingHorizontal: 20,
-                  marginTop: 0,
-                  textAlign: 'center'
-                }}>
-                {this.state.serviceCategory + ' Services'}
-              </Text>
-
-            </View>
-
-          </View>
-
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: 40
-          }}>
-            <Icon name="calendar" size={35} color='#E88D72'/>
-
-            <View style={{flexDirection: 'column'}}>
-
-              <Text style={{
-                textAlign: 'left',
-                marginLeft: 15,
-                fontWeight: 'bold',
-                color: '#000',
-                fontSize: 15
-              }}>Date
-              </Text>
-
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "300",
-                  paddingHorizontal: 20,
-                  marginTop: 0,
-                  textAlign: 'center'
-                }}>
-                {Moment(this.state.dateOrdered).format('MMMM Do YYYY, h:mm a')}
-              </Text>
-
-            </View>
-
-
-
-          </View>
-
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: 40
-          }}>
-            <Icon name="dollar" size={35} color='#E88D72'/>
-
-            <View style={{flexDirection: 'column'}}>
-
-              <Text style={{
-                textAlign: 'left',
-                marginLeft: 15,
-                fontWeight: 'bold',
-                color: '#000',
-                fontSize: 15
-              }}>Price
-              </Text>
-
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "300",
-                  paddingHorizontal: 20,
-
-                  marginTop: 0,
-                  textAlign: 'center'
-                }}>
-                {'$'+this.state.price+' CAD (HST included)'}
-              </Text>
-
-            </View>
-
-          </View>
-
-        </View>
+          Are you sure you would like to cancel?
+        </Text>
 
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity
             style={st.btn}
-          >
-            <Text style={st.btnText}>Message Seller</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={st.btn}
             onPress={() => this.cancelOrder(this.state.orderId)}
           >
-            <Text style={st.btnText}>Cancel Order</Text>
+            <Text style={st.btnText}>Yes, cancel</Text>
           </TouchableOpacity>
         </View>
 

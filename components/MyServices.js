@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, RefreshControl} from 'react-native';
+
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, RefreshControl, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button, Input, Card} from 'react-native-elements';
-
+import ServiceCard from "./ServiceCard.js";
 class MyServices extends Component {
 
   constructor(props) {
@@ -99,18 +100,15 @@ class MyServices extends Component {
 
       return this.state.servicePreviews.map((data) => {
         return (
-          <Card>
-            <Text style={{fontSize: 30}}>{data.serviceName}</Text>
-            <Text style={{marginBottom: 10}}>
-               {data.serviceDescription}
-            </Text>
-            <Button
-              icon={<Icon name='code' color='#ffffff' />}
-              backgroundColor='#03A9F4'
-              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              title='VIEW NOW'
-              onPress={() => this.selectService(data.id)} />
-          </Card>
+          <ServiceCard
+            id={data.id}
+            serviceName={data.serviceName}
+            sellerName={data.sellerName}
+            serviceDescription={data.serviceDescription}
+            minPrice={data.minPrice}
+            maxPrice={data.maxPrice}
+            navigation={this.props.navigation}
+          />
         )
       })
 
@@ -127,16 +125,28 @@ class MyServices extends Component {
 
     if (this.state.sellerName !== null) {
       return (
-        <View style={st.container}>
-            <Text style={st.heading1}>{this.state.sellerName}</Text>
-            <Button
-            raised
-            buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
-            textStyle={{textAlign: 'center'}}
-            title={`Sell A Service`}
-            onPress={this.sellAService.bind()}
-            />
+        <View style={{
+          alignItems: 'center'
+        }}>
+          <Text style={{
+              fontSize: 35,
+              fontWeight: "bold",
+              paddingHorizontal: 20,
+              marginTop: 25,
+              marginBottom: 15,
+              textAlign: 'center',
+              color: '#000'
+            }}>{this.state.sellerName}</Text>
+
+            <TouchableOpacity
+              style={st.btn}
+              onPress={this.sellAService.bind()}
+            >
+              <Text style={st.btnText}>Sell A Service</Text>
+            </TouchableOpacity>
+
             {this.servicePreviewList()}
+
         </View>
       );
     } else {
@@ -144,12 +154,12 @@ class MyServices extends Component {
       return (
           <View style={st.container}>
               <Text style={st.heading2}>You have not registered as a seller, yet..</Text>
-              <Button
-              raised
-              buttonStyle={{backgroundColor: '#065535', borderRadius: 10}}
-              textStyle={{textAlign: 'center'}}
-              title={`Become A Seller`}
-              onPress={this.becomeASeller.bind()}
+              <TouchableOpacity
+                style={st.btn}
+                onPress={this.becomeASeller.bind()}
+              >
+                <Text style={st.btnText}>Become A Seller</Text>
+              </TouchableOpacity>
               />
           </View>
         );
