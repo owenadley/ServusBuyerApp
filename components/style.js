@@ -95,5 +95,82 @@ module.exports = StyleSheet.create({
     backgroundColor: "#E88D72",
     justifyContent: "center",
     marginTop: 20
+  },
+  //SellAService styles
+  formView: {
+    flex: 1,
+    backgroundColor: "#54385535"
+  },
+  formStepIndicatorView: { padding: 20, paddingBottom: 0, flex: 1 },
+  formInputContainerView: {
+    backgroundColor: "#C0C2CC",
+    flex: 8,
+    marginHorizontal: 40,
+    borderRadius: 5,
+    justifyContent: "space-evenly",
+    alignItems: "center"
+  },
+  formTextInput: {
+    borderLeftWidth: 5,
+    borderLeftColor: "#FF8882",
+    width: WIDTH - 125,
+    height: 45,
+    fontSize: 16,
+    paddingLeft: 30,
+    backgroundColor: "rgba(0,0,0,0.30)",
+    color: "rgba(255,255,255,0.7)",
+    marginHorizontal: 25
+  },
+  formDropdownView: {
+    borderLeftWidth: 5,
+    borderLeftColor: "#FF8882",
+    width: WIDTH - 125,
+    height: 62.25,
+    backgroundColor: "rgba(0,0,0,0.30)",
+    paddingLeft: 8
+  },
+  formSliderView: {
+    flexDirection: "column",
+    backgroundColor: "rgba(0,0,0,0.30)",
+    height: 90,
+    width: WIDTH - 125,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  formTextInputPrice: {
+    borderLeftWidth: 5,
+    borderLeftColor: "#FF8882",
+    width: WIDTH - 290,
+    height: 45,
+    fontSize: 16,
+    paddingLeft: 30,
+    backgroundColor: "rgba(0,0,0,0.30)",
+    color: "rgba(255,255,255,0.5)",
+    marginHorizontal: 25
+  },
+  formDescriptionInput: {
+    borderLeftWidth: 5,
+    borderLeftColor: "#FF8882",
+    width: WIDTH - 125,
+    height: 200,
+    fontSize: 16,
+    paddingLeft: 30,
+    backgroundColor: "rgba(0,0,0,0.30)",
+    color: "rgba(255,255,255,0.7)",
+    marginHorizontal: 25
+  },
+  formChevronInputIcon: { position: "absolute", top: 8, left: 23 },
+  formDollarInputIcon: { position: "absolute", top: 12, left: 38 },
+  formUploadImageButton: {
+    width: WIDTH - 125,
+    height: 45,
+    borderBottomWidth: 3,
+    borderBottomColor: "#FF8882",
+    backgroundColor: "rgba(0,0,0,0.30)"
+  },
+  submitFormButton: {
+    width: WIDTH - 125,
+    height: 45,
+    backgroundColor: "#E88D72"
   }
 });
