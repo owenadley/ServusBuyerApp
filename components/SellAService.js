@@ -136,9 +136,8 @@ class SellAService extends Component {
                 <TextInput
                   style={st.formTextInput}
                   type="text"
-                  placeholder="Seller Name"
+                  placeholder={this.state.sellerName}
                   placeholderTextColor={"rgba(255,255,255,0.7)"}
-                  onChangeText={text => this.setState({ sellerName: text })}
                   underlineColorAndroid="transparent"
                 />
               </View>
@@ -154,7 +153,7 @@ class SellAService extends Component {
                   type="text"
                   placeholder="Service Name"
                   placeholderTextColor={"rgba(255,255,255,0.7)"}
-                  onChangeText={text => this.setState({ sellerName: text })}
+                  onChangeText={text => this.setState({ serviceName: text })}
                   underlineColorAndroid="transparent"
                 />
               </View>

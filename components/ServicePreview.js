@@ -61,6 +61,7 @@ class ServicePreview extends Component {
           minPrice={data.minPrice}
           maxPrice={data.maxPrice}
           navigation={this.props.navigation}
+          style={{flexDirection:'row'}}
         />
       );
     });
@@ -68,7 +69,7 @@ class ServicePreview extends Component {
 
   render() {
     const { navigation } = this.props;
-    return <ScrollView>{this.servicePreviewList()}</ScrollView>;
+    return this.servicePreviewList();
   }
 }
 
