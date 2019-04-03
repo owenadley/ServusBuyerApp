@@ -7,14 +7,25 @@ import {
   Image,
   Scroll,
   ScrollView,
-  AsyncStorage
+  TextInput,
+  AsyncStorage,
+  Dimensions,
+  Picker
 } from "react-native";
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/EvilIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import { Button, Input, Card } from "react-native-elements";
+import Icon3 from "react-native-vector-icons/FontAwesome";
+import { Slider } from "react-native-elements";
 import RadioGroup from "react-native-radio-buttons-group";
+import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
+import StepIndicator from "react-native-step-indicator";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import { SafeAreaView } from "react-navigation";
+import { Dropdown } from "react-native-material-dropdown";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
+const { width: WIDTH } = Dimensions.get("window");
 class SellAService extends Component {
   constructor(props) {
     super(props);
@@ -26,22 +37,19 @@ class SellAService extends Component {
       sellerName: "",
       minPrice: 0,
       maxPrice: 0,
-      proximity: 0,
+      proximity: 1,
       data: [
         {
-          label: "LawnMowing",
-          size: 32,
-          layout: "row"
+          value: "Lawn Mowing"
         },
         {
-          label: "SnowRemoval",
-          size: 32,
-          layout: "row"
+          value: "Snow Removal"
         },
         {
-          label: "Cleaning",
-          size: 32,
-          layout: "row"
+          value: "Cleaning"
+        },
+        {
+          value: "Handyman"
         }
       ]
     };
@@ -79,7 +87,7 @@ class SellAService extends Component {
         body: JSON.stringify({
           sellerId: result,
           sellerName: this.state.sellerName,
-          serviceCategory: selectedButton,
+          serviceCategory: this.state.serviceCategory,
           serviceName: this.state.serviceName,
           serviceDescription: this.state.serviceDescription,
           minPrice: this.state.minPrice,
@@ -102,73 +110,281 @@ class SellAService extends Component {
       : this.state.data[0].label;
 
     return (
-      <ScrollView>
-        <Text style={st.heading1}>Sell A Service</Text>
-        <Text style={st.heading2}>
-          Please choose the service you wish to offer
-        </Text>
+      <View style={{ flex: 1 }}>
+        <IndicatorViewPager
+          style={{ flex: 1 }}
+          indicator={this._renderDotIndicator()}
+        >
+          <View style={st.formView}>
+            <View style={st.formStepIndicatorView}>
+              <StepIndicator
+                stepCount={3}
+                // renderStepIndicator={this.renderStepIndicator}
+                customStyles={secondIndicatorStyles}
+                currentPosition={0}
+                labels={[]}
+              />
+            </View>
+            <View style={st.formInputContainerView}>
+              <View>
+                <Icon
+                  name={"chevron-right"}
+                  size={38}
+                  color={"#E88D72"}
+                  style={st.formChevronInputIcon}
+                />
+                <TextInput
+                  style={st.formTextInput}
+                  type="text"
+                  placeholder="Seller Name"
+                  placeholderTextColor={"rgba(255,255,255,0.7)"}
+                  onChangeText={text => this.setState({ sellerName: text })}
+                  underlineColorAndroid="transparent"
+                />
+              </View>
+              <View>
+                <Icon
+                  name={"chevron-right"}
+                  size={38}
+                  color={"#E88D72"}
+                  style={st.formChevronInputIcon}
+                />
+                <TextInput
+                  style={st.formTextInput}
+                  type="text"
+                  placeholder="Service Name"
+                  placeholderTextColor={"rgba(255,255,255,0.7)"}
+                  onChangeText={text => this.setState({ sellerName: text })}
+                  underlineColorAndroid="transparent"
+                />
+              </View>
+              <View style={st.formDropdownView}>
+                <Dropdown
+                  label="Service Category"
+                  labelFontSize={14}
+                  data={this.state.data}
+                  style={{ color: "rgba(255,255,255,0.7)" }}
+                  itemCount={3}
+                  onChangeText={text =>
+                    this.setState({ serviceCategory: text })
+                  }
+                />
+              </View>
+            </View>
+            <View style={{ flex: 1 }} />
+          </View>
 
-        <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
+          <View style={st.formView}>
+            <View style={st.formStepIndicatorView}>
+              <StepIndicator
+                stepCount={3}
+                // renderStepIndicator={this.renderStepIndicator}
+                customStyles={secondIndicatorStyles}
+                currentPosition={1}
+                labels={[]}
+              />
+            </View>
+            <View style={st.formInputContainerView}>
+              <View style={st.formSliderView}>
+                <Slider
+                  value={this.state.proximity}
+                  onValueChange={value => this.setState({ proximity: value })}
+                  minimumValue={5}
+                  maximumValue={100}
+                  thumbTouchSize={{ width: 80, height: 80 }}
+                  minimumTrackTintColor="#00000097"
+                  maximumTrackTintColor="white"
+                  step={1}
+                  style={{ width: WIDTH - 130 }}
+                  thumbTintColor="#FF8882"
+                />
+                <View style={{ flexDirection: "row" }}>
+                  <Icon2
+                    name="map-marker-radius"
+                    size={33}
+                    color={"#E88D7295"}
+                  />
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      paddingTop: 7,
+                      color: "rgba(255,255,255,0.7)"
+                    }}
+                  >
+                    Proximity: {this.state.proximity} km
+                  </Text>
+                </View>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <View>
+                  <Icon3
+                    name={"dollar"}
+                    size={20}
+                    color={"#E88D7295"}
+                    style={st.formDollarInputIcon}
+                  />
+                  <TextInput
+                    style={st.formTextInputPrice}
+                    type="text"
+                    placeholder="Min"
+                    placeholderTextColor={"rgba(255,255,255,0.7)"}
+                    onChangeText={text => this.setState({ minPrice: text })}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+                <View>
+                  <Icon3
+                    name={"dollar"}
+                    size={20}
+                    color={"#E88D7295"}
+                    style={st.formDollarInputIcon}
+                  />
+                  <TextInput
+                    style={st.formTextInputPrice}
+                    type="text"
+                    placeholder="Max"
+                    placeholderTextColor={"rgba(255,255,255,0.7)"}
+                    onChangeText={text => this.setState({ maxPrice: text })}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+              </View>
+              <View style={st.formUploadImageButton}>
+                <TouchableOpacity>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: WIDTH - 125,
+                      height: 45
+                    }}
+                  >
+                    <Icon2
+                      name="image-plus"
+                      size={30}
+                      color={"#E88D7295"}
+                      style={{ paddingRight: 5, paddingBottom: 3 }}
+                    />
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        color: "rgba(255,255,255,0.7)"
+                      }}
+                    >
+                      Upload Image
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ flex: 1 }} />
+          </View>
 
-        <Input
-          type="text"
-          label="Seller Name"
-          placeholder="Enter your seller or company name"
-          onChangeText={text => this.setState({ sellerName: text })}
-          leftIcon={<Icon2 name="earth-outline" size={24} color="black" />}
-        />
-        <Input
-          type="text"
-          label="Service Name"
-          placeholder="Enter the name of your service"
-          onChangeText={text => this.setState({ serviceName: text })}
-          leftIcon={<Icon2 name="earth-outline" size={24} color="black" />}
-        />
-        <Input
-          type="text"
-          label="Proximity (km)"
-          placeholder="How far are you willing to travel?"
-          onChangeText={text => this.setState({ proximity: text })}
-          leftIcon={<Icon2 name="earth-outline" size={24} color="black" />}
-        />
-        <Input
-          type="text"
-          label="Minimum Price (CAD$)"
-          placeholder="The cheapest you will offer your service for"
-          onChangeText={text => this.setState({ minPrice: text })}
-          leftIcon={
-            <Icon2 name="currency-usd-outline" size={24} color="black" />
-          }
-        />
-        <Input
-          type="text"
-          label="Maximum Price (CAD$)"
-          placeholder="The largest job you are willing to take on"
-          onChangeText={text => this.setState({ maxPrice: text })}
-          leftIcon={
-            <Icon2 name="currency-usd-outline" size={24} color="black" />
-          }
-        />
-        <Input
-          type="text"
-          label="Decription"
-          placeholder="Give a description of what you are offering"
-          onChangeText={text => this.setState({ serviceDescription: text })}
-          leftIcon={<Icon2 name="note-text-outline" size={24} color="black" />}
-        />
-
-        <Button
-          raised
-          buttonStyle={{ backgroundColor: "#065535", borderRadius: 10 }}
-          textStyle={{ textAlign: "center" }}
-          title={`Continue`}
-          onPress={this.becomeASeller.bind()}
-        />
-      </ScrollView>
+          <View style={st.formView}>
+            <View style={st.formStepIndicatorView}>
+              <StepIndicator
+                stepCount={3}
+                // renderStepIndicator={this.renderStepIndicator}
+                customStyles={secondIndicatorStyles}
+                currentPosition={2}
+                labels={[]}
+              />
+            </View>
+            <View style={st.formInputContainerView}>
+              <View
+                style={{
+                  alignItems: "flex-start"
+                }}
+              >
+                <Icon
+                  name={"chevron-right"}
+                  size={38}
+                  color={"#E88D72"}
+                  style={st.formChevronInputIcon}
+                />
+                <TextInput
+                  style={st.formDescriptionInput}
+                  type="text"
+                  placeholder="Description"
+                  placeholderTextColor={"rgba(255,255,255,0.7)"}
+                  onChangeText={text =>
+                    this.setState({ serviceDescription: text })
+                  }
+                  underlineColorAndroid="transparent"
+                  multiline={true}
+                />
+              </View>
+              <View style={st.submitFormButton}>
+                <TouchableOpacity onPress={this.becomeASeller.bind()}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: WIDTH - 125,
+                      height: 45
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        color: "rgba(255,255,255,1)"
+                      }}
+                    >
+                      SUBMIT
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ flex: 1 }} />
+          </View>
+        </IndicatorViewPager>
+      </View>
     );
   }
+  _renderDotIndicator() {
+    return <PagerDotIndicator pageCount={3} style={{ paddingBottom: 3 }} />;
+  }
+
+  renderViewPagerPage = data => {
+    return (
+      <View style={styles.page}>
+        <Text>{data}</Text>
+      </View>
+    );
+  };
+
+  renderStepIndicator = params => (
+    <MaterialIcon {...getStepIndicatorIconConfig(params)} />
+  );
 }
 
 const st = require("./style");
 const styles = StyleSheet.create({});
+const secondIndicatorStyles = {
+  stepIndicatorSize: 30,
+  currentStepIndicatorSize: 40,
+  separatorStrokeWidth: 2,
+  currentStepStrokeWidth: 3,
+  stepStrokeCurrentColor: "#fe7013",
+  stepStrokeWidth: 3,
+  separatorStrokeFinishedWidth: 4,
+  stepStrokeFinishedColor: "#fe7013",
+  stepStrokeUnFinishedColor: "#aaaaaa",
+  separatorFinishedColor: "#fe7013",
+  separatorUnFinishedColor: "#aaaaaa",
+  stepIndicatorFinishedColor: "#fe7013",
+  stepIndicatorUnFinishedColor: "#ffffff",
+  stepIndicatorCurrentColor: "#ffffff",
+  stepIndicatorLabelFontSize: 13,
+  currentStepIndicatorLabelFontSize: 13,
+  stepIndicatorLabelCurrentColor: "#fe7013",
+  stepIndicatorLabelFinishedColor: "#ffffff",
+  stepIndicatorLabelUnFinishedColor: "#aaaaaa",
+  labelColor: "#999999",
+  labelSize: 13,
+  currentStepLabelColor: "#fe7013"
+};
 export default SellAService;
