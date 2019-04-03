@@ -141,12 +141,13 @@ class Home extends Component {
               >
                 Top services
               </Text>
-              <View style={{ height: 230, marginTop: 10 }}>
+              <View style={{ height: 230, marginTop: 10, flexDirection:'row' }}>
                 <ScrollView
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
+                  style={{flex:1}}
                 >
-                  <ServicePreview navigation={navigation} />
+                  <ServicePreview style={{flexDirection:'row'}} navigation={navigation} />
                 </ScrollView>
               </View>
             </View>

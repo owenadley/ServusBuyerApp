@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, RefreshControl, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, AsyncStorage, RefreshControl, TouchableOpacity, ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -95,6 +95,13 @@ class MyServices extends Component {
     }
   }
 
+  // refresh control for refreshing services ordered list
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.fetchData();
+    this.setState({refreshing: false});
+  }
+
   servicePreviewList() {
     if(this.state.serviceExists) {
 
@@ -125,34 +132,46 @@ class MyServices extends Component {
 
     if (this.state.sellerName !== null) {
       return (
-        <View style={{
-          alignItems: 'center'
-        }}>
-          <Text style={{
-              fontSize: 35,
-              fontWeight: "bold",
-              paddingHorizontal: 20,
-              marginTop: 25,
-              marginBottom: 15,
-              textAlign: 'center',
-              color: '#000'
-            }}>{this.state.sellerName}</Text>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />}
+          >
+          <View style={{alignItems:'center'}}>
+            <Text style={{
+                fontSize: 35,
+                fontWeight: "bold",
+                paddingHorizontal: 20,
+                marginTop: 25,
+                marginBottom: 15,
+                textAlign: 'center',
+                color: '#000'
+              }}>{this.state.sellerName}</Text>
 
-            <TouchableOpacity
-              style={st.btn}
-              onPress={this.sellAService.bind()}
-            >
-              <Text style={st.btnText}>Sell A Service</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={st.btn}
+                onPress={this.sellAService.bind()}
+              >
+                <Text style={st.btnText}>Sell A Service</Text>
+              </TouchableOpacity>
 
-            {this.servicePreviewList()}
+              {this.servicePreviewList()}
+            </View>
 
-        </View>
+        </ScrollView>
       );
     } else {
       if (this.props.navigation.getParam("sellerName")) { this.fetchData(); }
       return (
-          <View style={st.container}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }>
               <Text style={st.heading2}>You have not registered as a seller, yet..</Text>
               <TouchableOpacity
                 style={st.btn}
@@ -161,7 +180,7 @@ class MyServices extends Component {
                 <Text style={st.btnText}>Become A Seller</Text>
               </TouchableOpacity>
               />
-          </View>
+          </ScrollView>
         );
     }
   }

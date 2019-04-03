@@ -70,7 +70,8 @@ class ServiceCard extends Component {
               <View
                 style={{
                   flex: 1,
-                  flexDirection: "row"
+                  flexDirection: "row",
+                  marginRight: 10
                 }}
               >
                 <View
@@ -88,45 +89,41 @@ class ServiceCard extends Component {
                       margin: 5
                     }}
                   />
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      padding: 12,
-                      paddingLeft: 3
-                    }}
-                  >
-                    {this.props.sellerName}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <StarRating
-                    disabled={true}
-                    maxStars={5}
-                    rating={4.5}
-                    starSize={16}
-                    fullStarColor="orange"
-                    emptyStarColor="orange"
-                    style={{ padding: 8 }}
-                  />
+                  <View style={{flexDirection:'column'}}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        paddingLeft: 3
+                      }}
+                    >
+                      {this.props.sellerName}
+                    </Text>
+                    <View style={{width:100, marginLeft: 13}}>
+                      <StarRating
+                        disabled={true}
+                        maxStars={5}
+                        rating={4.5}
+                        starSize={16}
+                        fullStarColor="orange"
+                        emptyStarColor="orange"
+                        style={{ padding: 8 }}
+                      />
+                    </View>
+                  </View>
                 </View>
               </View>
-              <View style={{ flex: 2 }}>
+              <View style={{ flex: 2, marginTop:10 }}>
                 <Text
                   style={{
                     fontSize: 20,
                     overflow: "hidden",
-                    textAlign: "center"
+                    textAlign: "center",
+                    color: '#000',
                   }}
                 >
                   {this.props.serviceName}
                 </Text>
-                <Text style={{ fontSize: 15, overflow: "hidden" }}>
+                <Text style={{ fontSize: 15, overflow: "hidden", textAlign:'center', marginTop:10 }}>
                   {this.props.serviceDescription}
                 </Text>
               </View>
@@ -153,7 +150,7 @@ class ServiceCard extends Component {
                   <Icon name="dollar" size={20} />
                   <Text
                     style={{
-                      fontSize: 15
+                      fontSize: 13
                     }}
                   >
                     {this.props.minPrice}-{this.props.maxPrice}
@@ -163,7 +160,7 @@ class ServiceCard extends Component {
                   style={{
                     borderRadius: 25,
                     backgroundColor: "#E88D7275",
-                    width: 75,
+                    width: 82,
                     height: 35,
                     justifyContent: "space-evenly",
                     alignItems: "center",
@@ -173,8 +170,8 @@ class ServiceCard extends Component {
                   <Icon2 name="map-marker-radius" size={25} />
                   <Text
                     style={{
-                      fontSize: 15,
-                      color: "black"
+                      fontSize: 13,
+
                     }}
                   >
                     10 km
