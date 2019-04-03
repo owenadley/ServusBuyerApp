@@ -40,7 +40,7 @@ import ServiceOrdered from "./ServiceOrdered.js";
 import ViewOrders from "./ViewOrders.js";
 import EditLoginSecurity from "./editLoginSecurity";
 import Order from './Order.js';
-
+import CancelOrder from './CancelOrder.js';
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
   toggleDrawer = () => {
@@ -347,6 +347,17 @@ const AppStack = createStackNavigator({
   },
   Order: {
     screen: Order,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  CancelOrder: {
+    screen: CancelOrder,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
