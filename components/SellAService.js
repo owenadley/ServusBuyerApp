@@ -122,7 +122,7 @@ class SellAService extends Component {
                 // renderStepIndicator={this.renderStepIndicator}
                 customStyles={secondIndicatorStyles}
                 currentPosition={0}
-                labels={[]}
+                labels={[]} 
               />
             </View>
             <View style={st.formInputContainerView}>

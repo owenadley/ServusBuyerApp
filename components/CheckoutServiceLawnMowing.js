@@ -21,6 +21,8 @@ import ServicePreview from "./ServicePreview.js";
 import Category from "./Category.js";
 import { StripeAddCard, SelectPayment } from 'react-native-checkout';
 import StarRating from "react-native-star-rating";
+import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
+import StepIndicator from "react-native-step-indicator";
 
 class CheckoutServiceLawnMowing extends Component {
   constructor(props) {
@@ -37,9 +39,14 @@ class CheckoutServiceLawnMowing extends Component {
     this.continueToPayment = this.continueToPayment.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
-    this.setState({serviceInfo: serviceInfo});
+    this.setState({
+      sellerName: serviceInfo[0].sellerName,
+      serviceCategory: serviceInfo[0].serviceCategory,
+      minPrice: serviceInfo[0].minPrice,
+      maxPrice: serviceInfo[0].maxPrice,
+    });
 
     AsyncStorage.getItem('userId', (err, result) => {
       const { navigation } = this.props;
@@ -57,9 +64,9 @@ class CheckoutServiceLawnMowing extends Component {
   }
 
   continueToPayment = () => {
-
+    const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
     this.props.navigation.navigate('PurchaseService', {
-      serviceInfo: this.state.serviceInfo
+      serviceInfo: serviceInfo
     });
   }
 
@@ -79,8 +86,8 @@ class CheckoutServiceLawnMowing extends Component {
             }}
           />
           <View style={{flex:1, flexDirection:'column', marginLeft: 20, marginTop: 20}}>
-            <Text style={{fontSize:30, color: '#000'}}>{this.state.serviceInfo[0].sellerName}</Text>
-            <Text style={{fontSize:15}}>{this.state.serviceInfo[0].serviceCategory} Service</Text>
+            <Text style={{fontSize:30, color: '#000'}}>{this.state.sellerName}</Text>
+            <Text style={{fontSize:15}}>{this.state.serviceCategory} Service</Text>
           </View>
           <View style={{marginTop:15, marginRight: 15}}>
             <StarRating
@@ -99,77 +106,135 @@ class CheckoutServiceLawnMowing extends Component {
             borderBottomColor: '#E88D72',
             borderBottomWidth: 2,
             marginTop: 20,
-            marginBottom: 35
+            marginBottom:20
           }}
         />
-        <View style={{alignItems:'center'}}>
-          <View style={{flexDirection:'row'}}>
-            <Icon name="dollar" size={30} color='#E88D72'/>
-            <Text style={{marginBottom:10, fontSize:20, marginLeft:10}}>{this.state.serviceInfo[0].minPrice} - {this.state.serviceInfo[0].maxPrice}</Text>
-          </View>
-          <Text style={{fontSize:20}}>Select your lawn size:</Text>
-        </View>
 
 
-          <View style={ {flex: 1, flexDirection: 'row', marginTop:50}}>
+          <IndicatorViewPager
+            style={{ flex: 1 }}
+            indicator={this._renderDotIndicator()}
+          >
+            <View>
 
-              <View style={{flex:1, height:100}}>
-                <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                  <Image
-                    source={require("../image/grass.png")}
-                    style={{
-                      width: 80,
-                      height: 80,
+              <View>
+                <StepIndicator
+                  stepCount={3}
+                  // renderStepIndicator={this.renderStepIndicator}
+                  customStyles={secondIndicatorStyles}
+                  currentPosition={0}
+                  labels={[]}
+                />
+              </View>
 
-                    }}
-                  />
+              <View style={{alignItems:'center', marginTop:50}}>
+                <Text style={{fontSize:20}}>Select your lawn size:</Text>
+              </View>
+
+
+              <View style={ {flex: 1, flexDirection: 'row', marginTop:30}}>
+                <View style={{flex:1, height:100}}>
+                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
+                    <Image
+                      source={require("../image/grass.png")}
+                      style={{
+                        width: 80,
+                        height: 80,
+
+                      }}
+                    />
+                  </View>
+                  <Button title='SM' onPress={() => this.chooseLawnSize('SM')}/>
                 </View>
-                <Button title='SM' onPress={() => this.chooseLawnSize('SM')}/>
-              </View>
 
-            <View style={{flex:1, height:100}}>
-              <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                <Image
-                  source={require("../image/grass.png")}
-                  style={{
-                    width: 100,
-                    height: 100,
+                <View style={{flex:1, height:100}}>
+                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
+                    <Image
+                      source={require("../image/grass.png")}
+                      style={{
+                        width: 100,
+                        height: 100,
 
-                  }}
-                />
-              </View>
-              <Button title='MD' onPress={() => this.chooseLawnSize('MD')}/>
+                      }}
+                    />
+                  </View>
+                  <Button title='MD' onPress={() => this.chooseLawnSize('MD')}/>
+                </View>
+
+                <View style={{flex:1, height:100}}>
+                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
+                    <Image
+                      source={require("../image/grass.png")}
+                      style={{
+                        width: 130,
+                        height: 130,
+
+                      }}
+                    />
+                  </View>
+                  <Button title='LG' onPress={() => this.chooseLawnSize('LG')}/>
+                </View>
             </View>
 
-            <View style={{flex:1, height:100}}>
-              <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                <Image
-                  source={require("../image/grass.png")}
-                  style={{
-                    width: 130,
-                    height: 130,
-
-                  }}
-                />
-              </View>
-              <Button title='LG' onPress={() => this.chooseLawnSize('LG')}/>
+            <View style={{flex:1,alignItems:'center'}}>
+              <Text style={st.heading2}>Selected Size: {this.state.lawnSize}</Text>
+              <TouchableOpacity
+                style={st.btn}
+                onPress={() => this.continueToPayment()}
+              >
+                <Text style={st.btnText}>Continue To Payment</Text>
+              </TouchableOpacity>
             </View>
+
           </View>
-          <View style={{alignItems:'center'}}>
-            <Text style={st.heading2}>Selected Size: {this.state.lawnSize}</Text>
-            <TouchableOpacity
-              style={st.btn}
-              onPress={() => this.continueToPayment()}
-            >
-              <Text style={st.btnText}>Purchase Order</Text>
-            </TouchableOpacity>
-          </View>
-      </View>
+        </IndicatorViewPager>
+
+
+    </View>
 
     );
   }
+  _renderDotIndicator() {
+    return <PagerDotIndicator pageCount={3} style={{ paddingBottom: 3 }} />;
+  }
+
+  renderViewPagerPage = data => {
+    return (
+      <View style={styles.page}>
+        <Text>{data}</Text>
+      </View>
+    );
+  };
+
+  renderStepIndicator = params => (
+    <MaterialIcon {...getStepIndicatorIconConfig(params)} />
+  );
 }
 
 const st = require("./style");
 const styles = StyleSheet.create({});
+const secondIndicatorStyles = {
+  stepIndicatorSize: 30,
+  currentStepIndicatorSize: 40,
+  separatorStrokeWidth: 2,
+  currentStepStrokeWidth: 3,
+  stepStrokeCurrentColor: "#fe7013",
+  stepStrokeWidth: 3,
+  separatorStrokeFinishedWidth: 4,
+  stepStrokeFinishedColor: "#fe7013",
+  stepStrokeUnFinishedColor: "#aaaaaa",
+  separatorFinishedColor: "#fe7013",
+  separatorUnFinishedColor: "#aaaaaa",
+  stepIndicatorFinishedColor: "#fe7013",
+  stepIndicatorUnFinishedColor: "#ffffff",
+  stepIndicatorCurrentColor: "#ffffff",
+  stepIndicatorLabelFontSize: 13,
+  currentStepIndicatorLabelFontSize: 13,
+  stepIndicatorLabelCurrentColor: "#fe7013",
+  stepIndicatorLabelFinishedColor: "#ffffff",
+  stepIndicatorLabelUnFinishedColor: "#aaaaaa",
+  labelColor: "#999999",
+  labelSize: 13,
+  currentStepLabelColor: "#fe7013"
+};
 export default CheckoutServiceLawnMowing;
