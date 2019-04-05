@@ -40,10 +40,10 @@ class SellAService extends Component {
       proximity: 1,
       data: [
         {
-          value: "Lawn Mowing"
+          value: "LawnMowing"
         },
         {
-          value: "Snow Removal"
+          value: "SnowRemoval"
         },
         {
           value: "Cleaning"
@@ -136,7 +136,8 @@ class SellAService extends Component {
                 <TextInput
                   style={st.formTextInput}
                   type="text"
-                  placeholder={this.state.sellerName}
+                  value={this.state.sellerName}
+                  placeholder={"Seller Name"}
                   placeholderTextColor={"rgba(255,255,255,0.7)"}
                   underlineColorAndroid="transparent"
                 />
@@ -158,16 +159,19 @@ class SellAService extends Component {
                 />
               </View>
               <View style={st.formDropdownView}>
-                <Dropdown
-                  label="Service Category"
-                  labelFontSize={14}
-                  data={this.state.data}
-                  style={{ color: "rgba(255,255,255,0.7)" }}
-                  itemCount={3}
-                  onChangeText={text =>
-                    this.setState({ serviceCategory: text })
-                  }
-                />
+                <View style={{position:'relative', top:-4}}>
+                  <Dropdown
+                    label="Service Category"
+                    labelFontSize={14}
+                    data={this.state.data}
+                    style={{ color: "rgba(255,255,255,0.7)" }}
+                    itemCount={3}
+                    baseColor="rgba(255,255,255,0.7)"
+                    onChangeText={text =>
+                      this.setState({ serviceCategory: text })
+                    }
+                  />
+                </View>
               </View>
             </View>
             <View style={{ flex: 1 }} />
@@ -190,11 +194,11 @@ class SellAService extends Component {
                   onValueChange={value => this.setState({ proximity: value })}
                   minimumValue={5}
                   maximumValue={100}
-                  thumbTouchSize={{ width: 80, height: 80 }}
+                  thumbTouchSize={{ width: 70, height: 80 }}
                   minimumTrackTintColor="#00000097"
                   maximumTrackTintColor="white"
                   step={1}
-                  style={{ width: WIDTH - 130 }}
+                  style={{ width: WIDTH - 155 }}
                   thumbTintColor="#FF8882"
                 />
                 <View style={{ flexDirection: "row" }}>
@@ -315,25 +319,11 @@ class SellAService extends Component {
                 />
               </View>
               <View style={st.submitFormButton}>
-                <TouchableOpacity onPress={this.becomeASeller.bind()}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      width: WIDTH - 125,
-                      height: 45
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 20,
-                        color: "rgba(255,255,255,1)"
-                      }}
-                    >
-                      SUBMIT
-                    </Text>
-                  </View>
+                <TouchableOpacity
+                  style={st.btnForm}
+                  onPress={() => this.becomeASeller().bind()}
+                >
+                  <Text style={st.btnText}>Submit</Text>
                 </TouchableOpacity>
               </View>
             </View>

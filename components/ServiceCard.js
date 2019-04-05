@@ -7,10 +7,11 @@ import StarRating from "react-native-star-rating";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 class ServiceCard extends Component {
-  selectService = data => {
+  selectService = (data, myServices) => {
     if (data !== 0) {
       this.props.navigation.navigate("Service", {
-        selectedService: data
+        selectedService: data,
+        myServices: myServices
       });
     }
   };
@@ -36,7 +37,7 @@ class ServiceCard extends Component {
           // elevation: 8
         }}
       >
-        <TouchableOpacity onPress={() => this.selectService(this.props.id)}>
+        <TouchableOpacity onPress={() => this.selectService(this.props.id, this.props.myServices)}>
           <View
             style={{
               overflow: "hidden",

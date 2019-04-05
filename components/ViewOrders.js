@@ -75,7 +75,7 @@ class ViewOrders extends Component {
               <View style={{
                 flexDirection: 'column',
                 justifyContent: 'center',
-                marginLeft: 50
+                marginLeft: 20
               }}>
 
                 <Text style={{ fontSize: 30, }}>{data.sellerName}</Text>
@@ -90,7 +90,7 @@ class ViewOrders extends Component {
                   height: 90,
                   borderRadius: 45,
                   margin: 20,
-                  marginRight: 40
+                  marginRight: 20
                 }}
               />
 
@@ -118,7 +118,7 @@ class ViewOrders extends Component {
               marginBottom: 15,
               textAlign: 'center',
               color: 'grey'
-            }}>You have not placed any orders, yet..</Text>
+            }}>You do not have any active orders</Text>
           </View>
       )
     }
