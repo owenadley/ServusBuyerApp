@@ -115,6 +115,7 @@ class MyServices extends Component {
             minPrice={data.minPrice}
             maxPrice={data.maxPrice}
             navigation={this.props.navigation}
+            myServices={true}
           />
         )
       })
@@ -158,6 +159,7 @@ class MyServices extends Component {
               </TouchableOpacity>
 
               {this.servicePreviewList()}
+
             </View>
 
         </ScrollView>

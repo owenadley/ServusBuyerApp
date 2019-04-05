@@ -81,6 +81,14 @@ module.exports = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20
   },
+  btnForm: {
+    width: WIDTH - 155,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: "#E88D72",
+    justifyContent: "center",
+    marginTop: 20
+  },
   btnText: {
     color: "#543855",
     fontSize: 19,
@@ -99,7 +107,7 @@ module.exports = StyleSheet.create({
   //SellAService styles
   formView: {
     flex: 1,
-    backgroundColor: "#54385535"
+    backgroundColor: "#fff"
   },
   formStepIndicatorView: { padding: 20, paddingBottom: 0, flex: 1 },
   formInputContainerView: {
@@ -125,7 +133,7 @@ module.exports = StyleSheet.create({
     borderLeftWidth: 5,
     borderLeftColor: "#FF8882",
     width: WIDTH - 125,
-    height: 62.25,
+    height: 75,
     backgroundColor: "rgba(0,0,0,0.30)",
     paddingLeft: 8
   },
@@ -169,8 +177,8 @@ module.exports = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.30)"
   },
   submitFormButton: {
-    width: WIDTH - 125,
+    width: 200,
     height: 45,
-    backgroundColor: "#E88D72"
+    alignItems: 'center'
   }
 });
