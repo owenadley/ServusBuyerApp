@@ -20,7 +20,7 @@ class ServiceCard extends Component {
     return (
       <View
         style={{
-          borderRightColor: "#398FC7",
+          borderRightColor: "#43B14B",
           borderRightWidth: 3,
           height: 200,
           width: 370,
@@ -37,7 +37,11 @@ class ServiceCard extends Component {
           // elevation: 8
         }}
       >
-        <TouchableOpacity onPress={() => this.selectService(this.props.id, this.props.myServices)}>
+        <TouchableOpacity
+          onPress={() =>
+            this.selectService(this.props.id, this.props.myServices)
+          }
+        >
           <View
             style={{
               overflow: "hidden",
@@ -90,7 +94,7 @@ class ServiceCard extends Component {
                       margin: 5
                     }}
                   />
-                  <View style={{flexDirection:'column'}}>
+                  <View style={{ flexDirection: "column" }}>
                     <Text
                       style={{
                         fontSize: 15,
@@ -99,7 +103,7 @@ class ServiceCard extends Component {
                     >
                       {this.props.sellerName}
                     </Text>
-                    <View style={{width:100, marginLeft: 13}}>
+                    <View style={{ width: 100, marginLeft: 13 }}>
                       <StarRating
                         disabled={true}
                         maxStars={5}
@@ -113,18 +117,25 @@ class ServiceCard extends Component {
                   </View>
                 </View>
               </View>
-              <View style={{ flex: 2, marginTop:10 }}>
+              <View style={{ flex: 2, marginTop: 10 }}>
                 <Text
                   style={{
                     fontSize: 20,
                     overflow: "hidden",
                     textAlign: "center",
-                    color: '#000',
+                    color: "#000"
                   }}
                 >
                   {this.props.serviceName}
                 </Text>
-                <Text style={{ fontSize: 15, overflow: "hidden", textAlign:'center', marginTop:10 }}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    overflow: "hidden",
+                    textAlign: "center",
+                    marginTop: 10
+                  }}
+                >
                   {this.props.serviceDescription}
                 </Text>
               </View>
@@ -171,8 +182,7 @@ class ServiceCard extends Component {
                   <Icon2 name="map-marker-radius" size={25} />
                   <Text
                     style={{
-                      fontSize: 13,
-
+                      fontSize: 13
                     }}
                   >
                     10 km

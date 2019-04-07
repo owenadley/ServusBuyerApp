@@ -179,6 +179,7 @@ module.exports = StyleSheet.create({
   submitFormButton: {
     width: 200,
     height: 45,
-    alignItems: 'center'
+    alignItems: "center"
   }
+  //ViewAccount styles
 });

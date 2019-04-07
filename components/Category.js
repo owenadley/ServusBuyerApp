@@ -22,12 +22,9 @@ class Category extends Component {
           overflow: "hidden",
           height: 130,
           width: 130,
-          marginLeft: 20,
           borderWidth: 0.5,
           borderColor: "#dddddd",
-          borderRadius: 10,
-          borderBottomColor: "lightgreen",
-          borderBottomWidth: 3
+          borderRadius: 10
         }}
       >
         <View style={{ flex: 3 }}>

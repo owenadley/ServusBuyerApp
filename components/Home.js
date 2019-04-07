@@ -109,23 +109,91 @@ class Home extends Component {
                   <TouchableOpacity
                     onPress={() => this.selectServiceCategory()}
                   >
-                    <Category
-                      imageUri={require("../image/LawnMowing.jpg")}
-                      name="Lawn Mowing"
-                    />
+                    <View
+                      style={{
+                        overflow: "hidden",
+                        height: 130,
+                        width: 130,
+                        marginLeft: 20,
+                        borderWidth: 0.5,
+                        borderColor: "#dddddd",
+                        borderRadius: 10,
+                        borderBottomColor: "#43B14B",
+                        borderBottomWidth: 3
+                      }}
+                    >
+                      <Category
+                        imageUri={require("../image/LawnMowing.jpg")}
+                        name="Lawn Mowing"
+                      />
+                    </View>
                   </TouchableOpacity>
-                  <Category
-                    imageUri={require("../image/SnowRemoval.jpg")}
-                    name="Snow Removal"
-                  />
-                  <Category
-                    imageUri={require("../image/CleaningServices.jpg")}
-                    name="Cleaning Services"
-                  />
-                  <Category
-                    imageUri={require("../image/HandymanServices.jpg")}
-                    name="Handyman"
-                  />
+                  <TouchableOpacity
+                    onPress={() => this.selectServiceCategory()}
+                  >
+                    <View
+                      style={{
+                        overflow: "hidden",
+                        height: 130,
+                        width: 130,
+                        marginLeft: 20,
+                        borderWidth: 0.5,
+                        borderColor: "#dddddd",
+                        borderRadius: 10,
+                        borderBottomColor: "#398FC7",
+                        borderBottomWidth: 3
+                      }}
+                    >
+                      <Category
+                        imageUri={require("../image/SnowRemoval.jpg")}
+                        name="Snow Removal"
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.selectServiceCategory()}
+                  >
+                    <View
+                      style={{
+                        overflow: "hidden",
+                        height: 130,
+                        width: 130,
+                        marginLeft: 20,
+                        borderWidth: 0.5,
+                        borderColor: "#dddddd",
+                        borderRadius: 10,
+                        borderBottomColor: "#FFDB15",
+                        borderBottomWidth: 3
+                      }}
+                    >
+                      <Category
+                        imageUri={require("../image/CleaningServices.jpg")}
+                        name="Cleaning Services"
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.selectServiceCategory()}
+                  >
+                    <View
+                      style={{
+                        overflow: "hidden",
+                        height: 130,
+                        width: 130,
+                        marginLeft: 20,
+                        borderWidth: 0.5,
+                        borderColor: "#dddddd",
+                        borderRadius: 10,
+                        borderBottomColor: "#AB202A",
+                        borderBottomWidth: 3
+                      }}
+                    >
+                      <Category
+                        imageUri={require("../image/HandymanServices.jpg")}
+                        name="Handyman"
+                      />
+                    </View>
+                  </TouchableOpacity>
                 </ScrollView>
               </View>
             </View>
@@ -141,13 +209,18 @@ class Home extends Component {
               >
                 Top services
               </Text>
-              <View style={{ height: 230, marginTop: 10, flexDirection:'row' }}>
+              <View
+                style={{ height: 230, marginTop: 10, flexDirection: "row" }}
+              >
                 <ScrollView
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
-                  style={{flex:1}}
+                  style={{ flex: 1 }}
                 >
-                  <ServicePreview style={{flexDirection:'row'}} navigation={navigation} />
+                  <ServicePreview
+                    style={{ flexDirection: "row" }}
+                    navigation={navigation}
+                  />
                 </ScrollView>
               </View>
             </View>
