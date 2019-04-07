@@ -1,25 +1,13 @@
 import React, { Component } from "react";
 import {
-  Animated,
   StyleSheet,
   Text,
   View,
   AsyncStorage,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
-  ScrollView,
   Image,
-  RefreshControl,
   Button,
-  ImageBackground,
   TouchableOpacity
 } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ServicePreview from "./ServicePreview.js";
-import Category from "./Category.js";
-import { StripeAddCard, SelectPayment } from 'react-native-checkout';
 import StarRating from "react-native-star-rating";
 import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
 import StepIndicator from "react-native-step-indicator";
@@ -40,15 +28,18 @@ class CheckoutServiceLawnMowing extends Component {
   }
 
   componentDidMount() {
-    const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
+    const serviceInfo = this.props.navigation.getParam(
+      "serviceInfo",
+      "NO-SERVICE"
+    );
     this.setState({
       sellerName: serviceInfo[0].sellerName,
       serviceCategory: serviceInfo[0].serviceCategory,
       minPrice: serviceInfo[0].minPrice,
-      maxPrice: serviceInfo[0].maxPrice,
+      maxPrice: serviceInfo[0].maxPrice
     });
 
-    AsyncStorage.getItem('userId', (err, result) => {
+    AsyncStorage.getItem("userId", (err, result) => {
       const { navigation } = this.props;
       var encodedID = encodeURIComponent(result);
 
@@ -56,40 +47,53 @@ class CheckoutServiceLawnMowing extends Component {
     });
   }
 
-  chooseLawnSize = (size) => {
+  chooseLawnSize = size => {
     //alert('yeet');
     this.setState({
       lawnSize: size
     });
-  }
+  };
 
   continueToPayment = () => {
-    const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
-    this.props.navigation.navigate('PurchaseService', {
+    const serviceInfo = this.props.navigation.getParam(
+      "serviceInfo",
+      "NO-SERVICE"
+    );
+    this.props.navigation.navigate("PurchaseService", {
       serviceInfo: serviceInfo
     });
-  }
+  };
 
   render() {
     const { navigation } = this.props;
 
     return (
-      <View style={{flex:1, padding:10}}>
-        <View style={{flexDirection:'row'}}>
+      <View style={{ flex: 1, padding: 10 }}>
+        <View style={{ flexDirection: "row" }}>
           <Image
             source={require("../image/LawnMowing.jpg")}
             style={{
               width: 110,
               height: 110,
-              borderRadius: 55,
-
+              borderRadius: 55
             }}
           />
-          <View style={{flex:1, flexDirection:'column', marginLeft: 20, marginTop: 20}}>
-            <Text style={{fontSize:30, color: '#000'}}>{this.state.sellerName}</Text>
-            <Text style={{fontSize:15}}>{this.state.serviceCategory} Service</Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "column",
+              marginLeft: 20,
+              marginTop: 20
+            }}
+          >
+            <Text style={{ fontSize: 30, color: "#000" }}>
+              {this.state.sellerName}
+            </Text>
+            <Text style={{ fontSize: 15 }}>
+              {this.state.serviceCategory} Service
+            </Text>
           </View>
-          <View style={{marginTop:15, marginRight: 15}}>
+          <View style={{ marginTop: 15, marginRight: 15 }}>
             <StarRating
               disabled={true}
               maxStars={5}
@@ -97,87 +101,104 @@ class CheckoutServiceLawnMowing extends Component {
               starSize={16}
               fullStarColor="orange"
               emptyStarColor="orange"
-              style={{ padding: 8,}}
+              style={{ padding: 8 }}
             />
           </View>
         </View>
         <View
           style={{
-            borderBottomColor: '#E88D72',
+            borderBottomColor: "#E88D72",
             borderBottomWidth: 2,
             marginTop: 20,
-            marginBottom:20
+            marginBottom: 20
           }}
         />
 
-
-          <IndicatorViewPager
-            style={{ flex: 1 }}
-            indicator={this._renderDotIndicator()}
-          >
+        <IndicatorViewPager
+          style={{ flex: 1 }}
+          indicator={this._renderDotIndicator()}
+        >
+          <View>
             <View>
-
-              <View>
-                <StepIndicator
-                  stepCount={3}
-                  // renderStepIndicator={this.renderStepIndicator}
-                  customStyles={secondIndicatorStyles}
-                  currentPosition={0}
-                  labels={[]}
-                />
-              </View>
-
-              <View style={{alignItems:'center', marginTop:50}}>
-                <Text style={{fontSize:20}}>Select your lawn size:</Text>
-              </View>
-
-
-              <View style={ {flex: 1, flexDirection: 'row', marginTop:30}}>
-                <View style={{flex:1, height:100}}>
-                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                    <Image
-                      source={require("../image/grass.png")}
-                      style={{
-                        width: 80,
-                        height: 80,
-
-                      }}
-                    />
-                  </View>
-                  <Button title='SM' onPress={() => this.chooseLawnSize('SM')}/>
-                </View>
-
-                <View style={{flex:1, height:100}}>
-                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                    <Image
-                      source={require("../image/grass.png")}
-                      style={{
-                        width: 100,
-                        height: 100,
-
-                      }}
-                    />
-                  </View>
-                  <Button title='MD' onPress={() => this.chooseLawnSize('MD')}/>
-                </View>
-
-                <View style={{flex:1, height:100}}>
-                  <View style={{width:110, height:110, alignItems:'center', justifyContent:'flex-end'}}>
-                    <Image
-                      source={require("../image/grass.png")}
-                      style={{
-                        width: 130,
-                        height: 130,
-
-                      }}
-                    />
-                  </View>
-                  <Button title='LG' onPress={() => this.chooseLawnSize('LG')}/>
-                </View>
+              <StepIndicator
+                stepCount={3}
+                // renderStepIndicator={this.renderStepIndicator}
+                customStyles={secondIndicatorStyles}
+                currentPosition={0}
+                labels={[]}
+              />
             </View>
 
-            <View style={{flex:1,alignItems:'center'}}>
-              <Text style={st.heading2}>Selected Size: {this.state.lawnSize}</Text>
+            <View style={{ alignItems: "center", marginTop: 50 }}>
+              <Text style={{ fontSize: 20 }}>Select your lawn size:</Text>
+            </View>
+
+            <View style={{ flex: 1, flexDirection: "row", marginTop: 30 }}>
+              <View style={{ flex: 1, height: 100 }}>
+                <View
+                  style={{
+                    width: 110,
+                    height: 110,
+                    alignItems: "center",
+                    justifyContent: "flex-end"
+                  }}
+                >
+                  <Image
+                    source={require("../image/grass.png")}
+                    style={{
+                      width: 80,
+                      height: 80
+                    }}
+                  />
+                </View>
+                <Button title="SM" onPress={() => this.chooseLawnSize("SM")} />
+              </View>
+
+              <View style={{ flex: 1, height: 100 }}>
+                <View
+                  style={{
+                    width: 110,
+                    height: 110,
+                    alignItems: "center",
+                    justifyContent: "flex-end"
+                  }}
+                >
+                  <Image
+                    source={require("../image/grass.png")}
+                    style={{
+                      width: 100,
+                      height: 100
+                    }}
+                  />
+                </View>
+                <Button title="MD" onPress={() => this.chooseLawnSize("MD")} />
+              </View>
+
+              <View style={{ flex: 1, height: 100 }}>
+                <View
+                  style={{
+                    width: 110,
+                    height: 110,
+                    alignItems: "center",
+                    justifyContent: "flex-end"
+                  }}
+                >
+                  <Image
+                    source={require("../image/grass.png")}
+                    style={{
+                      width: 130,
+                      height: 130
+                    }}
+                  />
+                </View>
+                <Button title="LG" onPress={() => this.chooseLawnSize("LG")} />
+              </View>
+            </View>
+
+            <View style={{ flex: 1, alignItems: "center" }}>
+              <Text style={st.heading2}>
+                Selected Size: {this.state.lawnSize}
+              </Text>
               <TouchableOpacity
                 style={st.btn}
                 onPress={() => this.continueToPayment()}
@@ -185,13 +206,9 @@ class CheckoutServiceLawnMowing extends Component {
                 <Text style={st.btnText}>Continue To Payment</Text>
               </TouchableOpacity>
             </View>
-
           </View>
         </IndicatorViewPager>
-
-
-    </View>
-
+      </View>
     );
   }
   _renderDotIndicator() {

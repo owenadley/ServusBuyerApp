@@ -122,7 +122,7 @@ class SellAService extends Component {
                 // renderStepIndicator={this.renderStepIndicator}
                 customStyles={secondIndicatorStyles}
                 currentPosition={0}
-                labels={[]} 
+                labels={[]}
               />
             </View>
             <View style={st.formInputContainerView}>
@@ -159,7 +159,7 @@ class SellAService extends Component {
                 />
               </View>
               <View style={st.formDropdownView}>
-                <View style={{position:'relative', top:-4}}>
+                <View style={{ position: "relative", top: -4 }}>
                   <Dropdown
                     label="Service Category"
                     labelFontSize={14}
@@ -321,7 +321,7 @@ class SellAService extends Component {
               <View style={st.submitFormButton}>
                 <TouchableOpacity
                   style={st.btnForm}
-                  onPress={() => this.becomeASeller().bind()}
+                  onPress={this.becomeASeller.bind()}
                 >
                   <Text style={st.btnText}>Submit</Text>
                 </TouchableOpacity>
