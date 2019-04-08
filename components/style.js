@@ -109,7 +109,7 @@ module.exports = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  formStepIndicatorView: { padding: 20, paddingBottom: 0, flex: 1 },
+  formStepIndicatorView: { padding: 20, paddingBottom: 10 },
   formInputContainerView: {
     backgroundColor: "#C0C2CC",
     flex: 8,
@@ -156,18 +156,22 @@ module.exports = StyleSheet.create({
     color: "rgba(255,255,255,0.5)",
     marginHorizontal: 25
   },
+  formDescription: {
+    fontSize: 16,
+    color: "rgba(255,255,255,0.7)",
+    marginHorizontal: 25
+  },
   formDescriptionInput: {
     borderLeftWidth: 5,
     borderLeftColor: "#FF8882",
     width: WIDTH - 125,
     height: 200,
     fontSize: 16,
-    paddingLeft: 30,
     backgroundColor: "rgba(0,0,0,0.30)",
-    color: "rgba(255,255,255,0.7)",
-    marginHorizontal: 25
+    color: "rgba(255,255,255,0.7)"
   },
   formChevronInputIcon: { position: "absolute", top: 8, left: 23 },
+  formChevronInputDescriptionIcon: { position: "absolute", top: 9, left: 0 },
   formDollarInputIcon: { position: "absolute", top: 12, left: 38 },
   formUploadImageButton: {
     width: WIDTH - 125,
