@@ -101,7 +101,7 @@ class Home extends Component {
               >
                 What service are you looking for?
               </Text>
-              <View style={{ height: 130, marginTop: 20 }}>
+              <View style={{ height: 140, marginTop: 10 }}>
                 <ScrollView
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
@@ -209,9 +209,7 @@ class Home extends Component {
               >
                 Top services
               </Text>
-              <View
-                style={{ height: 230, marginTop: 10, flexDirection: "row" }}
-              >
+              <View style={{ height: 230, flexDirection: "row" }}>
                 <ScrollView
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}

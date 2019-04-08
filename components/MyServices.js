@@ -172,7 +172,8 @@ class MyServices extends Component {
         this.fetchData();
       }
       return (
-        <ScrollView
+        <View
+          style={{ justifyContent: "center", alignItems: "center" }}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -181,12 +182,12 @@ class MyServices extends Component {
           }
         >
           <Text style={st.heading2}>
-            You have not registered as a seller, yet..
+            You have not registered as a seller, yet...
           </Text>
           <TouchableOpacity style={st.btn} onPress={this.becomeASeller.bind()}>
             <Text style={st.btnText}>Become A Seller</Text>
           </TouchableOpacity>
-        </ScrollView>
+        </View>
       );
     }
   }
