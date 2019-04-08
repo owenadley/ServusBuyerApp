@@ -33,11 +33,21 @@ class CreateLocation extends Component{
             fetchDetails={true}
             renderDescription={row => row.description} // custom description render
             onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-              this.state.streetNumber = details.address_components[0].short_name;
-              this.state.streetName = details.address_components[1].short_name;
-              this.state.city = details.address_components[3].short_name;
-              this.state.province = details.address_components[5].short_name;
-              this.state.postalCode = details.address_components[7].short_name;
+              if(details.address_components[0] != null){
+                this.state.streetNumber = details.address_components[0].short_name;
+              }
+              if(details.address_components[1] != null){
+                this.state.streetName = details.address_components[1].short_name;
+              }
+              if(details.address_components[3] != null){
+                this.state.city = details.address_components[3].short_name;
+              }
+              if(details.address_components[5] != null){
+                this.state.province = details.address_components[5].short_name;
+              }
+              if(details.address_components[7] != null){
+                this.state.postalCode = details.address_components[7].short_name;
+              }
               AsyncStorage.getItem('userId', (err, result) => {
                 this.state.userId = result;
                 var cmd = 'http://localhost:8080/api/createLocation/?userId=' + this.state.userId + '&streetNumber=' + this.state.streetNumber + '&streetName=' + this.state.streetName + '&city=' + this.state.city + '&province=' + this.state.province + '&postalCode=' + this.state.postalCode

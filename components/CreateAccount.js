@@ -89,6 +89,7 @@ class CreateAccount extends Component {
             style={st.input}
             type="text"
             placeholder="Email"
+            value={this.state.email}
             placeholderTextColor={"rgba(255,255,255,0.7)"}
             onChangeText={text => this.setState({ email: text })}
           />
