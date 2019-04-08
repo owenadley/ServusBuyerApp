@@ -79,6 +79,23 @@ class CreateAccount extends Component {
         </View>
 
         <View style={st.inputContainer}>
+          <Icon2
+            name={"email-outline"}
+            size={28}
+            color={"rgba(255,255,255,0.7)"}
+            style={st.inputIcon}
+          />
+          <TextInput
+            style={st.input}
+            type="text"
+            placeholder="Email"
+            value={this.state.email}
+            placeholderTextColor={"rgba(255,255,255,0.7)"}
+            onChangeText={text => this.setState({ email: text })}
+          />
+        </View>
+
+        <View style={st.inputContainer}>
           <Icon
             name={"user"}
             size={28}
