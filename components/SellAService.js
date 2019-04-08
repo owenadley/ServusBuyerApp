@@ -10,7 +10,8 @@ import {
   TextInput,
   AsyncStorage,
   Dimensions,
-  Picker
+  Picker,
+  KeyboardAvoidingView
 } from "react-native";
 
 import Icon from "react-native-vector-icons/EvilIcons";
@@ -296,18 +297,21 @@ class SellAService extends Component {
             </View>
             <View style={st.formInputContainerView}>
               <View
-                style={{
-                  alignItems: "flex-start"
-                }}
+                style={[
+                  st.formDescriptionInput,
+                  {
+                    alignItems: "flex-start"
+                  }
+                ]}
               >
                 <Icon
                   name={"chevron-right"}
                   size={38}
-                  color={"#E88D72"}
-                  style={st.formChevronInputIcon}
+                  color={"#E88D7295"}
+                  style={st.formChevronInputDescriptionIcon}
                 />
                 <TextInput
-                  style={st.formDescriptionInput}
+                  style={st.formDescription}
                   type="text"
                   placeholder="Description"
                   placeholderTextColor={"rgba(255,255,255,0.7)"}
@@ -315,7 +319,6 @@ class SellAService extends Component {
                     this.setState({ serviceDescription: text })
                   }
                   underlineColorAndroid="transparent"
-                  multiline={true}
                 />
               </View>
               <View style={st.submitFormButton}>
