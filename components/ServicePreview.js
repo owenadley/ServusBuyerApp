@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet } from "react-native";
 
-import Icon from "react-native-vector-icons/FontAwesome";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import { Button, Input, Card } from "react-native-elements";
-import Service from "./Service.js";
-import StarRating from "react-native-star-rating";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import ServiceCard from "./ServiceCard.js";
 
 class ServicePreview extends Component {

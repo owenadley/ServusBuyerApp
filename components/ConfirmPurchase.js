@@ -1,23 +1,12 @@
 import React, { Component } from "react";
 import {
-  Animated,
   StyleSheet,
   Text,
   View,
   AsyncStorage,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
-  ScrollView,
   Image,
-  Button,
   TouchableOpacity
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import ServicePreview from "./ServicePreview.js";
-import Category from "./Category.js";
-import { StripeAddCard, SelectPayment } from 'react-native-checkout';
 import StarRating from "react-native-star-rating";
 import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
 import StepIndicator from "react-native-step-indicator";

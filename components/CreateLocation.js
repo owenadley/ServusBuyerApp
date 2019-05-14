@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Image, Text, AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 class CreateLocation extends Component{

@@ -1,28 +1,20 @@
 import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  Image,
-  Scroll,
-  ScrollView,
   TextInput,
   AsyncStorage,
   Dimensions,
-  Picker,
-  KeyboardAvoidingView
 } from "react-native";
 
 import Icon from "react-native-vector-icons/EvilIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import { Slider } from "react-native-elements";
-import RadioGroup from "react-native-radio-buttons-group";
 import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
 import StepIndicator from "react-native-step-indicator";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-import { SafeAreaView } from "react-navigation";
 import { Dropdown } from "react-native-material-dropdown";
 import { TouchableOpacity } from "react-native-gesture-handler";
 

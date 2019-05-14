@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, AsyncStorage, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, AsyncStorage, TextInput} from 'react-native';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-import {Button, Input, Card} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 
 class EditLoginSecurity extends Component {

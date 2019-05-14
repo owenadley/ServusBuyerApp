@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  Image,
   AsyncStorage,
   RefreshControl,
   TouchableOpacity,
   ScrollView
 } from "react-native";
-
-import Icon from "react-native-vector-icons/FontAwesome";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import { Button, Input, Card } from "react-native-elements";
 import ServiceCard from "./ServiceCard.js";
+
 class MyServices extends Component {
   constructor(props) {
     super(props);

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import Service from "./Service.js";
 import StarRating from "react-native-star-rating";
 import { TouchableOpacity } from "react-native-gesture-handler";
 

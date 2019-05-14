@@ -1,22 +1,11 @@
 import React, { Component } from "react";
 import {
-  Animated,
   StyleSheet,
-  Text,
-  View,
   AsyncStorage,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
   ScrollView,
-  Image,
   RefreshControl
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import ServicePreview from "./ServicePreview.js";
-import Category from "./Category.js";
-import { StripeAddCard, SelectPayment } from 'react-native-checkout';
+import { SelectPayment } from 'react-native-checkout';
 
 class PaymentInfo extends Component {
   constructor(props) {
