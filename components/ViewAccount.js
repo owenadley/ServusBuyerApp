@@ -32,6 +32,8 @@ class ViewAccount extends Component {
     });
   };
 
+  
+
   createFormData = (photo, body) => {
     const data = new FormData();
 
