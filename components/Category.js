@@ -1,18 +1,10 @@
 import React, { Component } from "react";
 import {
-  Animated,
   StyleSheet,
   Text,
   View,
-  AsyncStorage,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
-  ScrollView,
   Image
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
 
 class Category extends Component {
   render() {

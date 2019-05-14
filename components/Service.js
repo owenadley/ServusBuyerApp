@@ -3,9 +3,6 @@ import {Platform, StyleSheet, Text, View, Image, TouchableOpacity} from 'react-n
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Button, Input, Card} from 'react-native-elements';
-import { StripeAddCard } from 'react-native-checkout';
-import NavigationService from'./NavigationService.js';
 import StarRating from "react-native-star-rating";
 
 

@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, AsyncStorage, TouchableOpacity} from 'react-native';
-import Timeline from 'react-native-timeline-listview';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Button, Input, Card} from 'react-native-elements';
-import { StripeAddCard } from 'react-native-checkout';
-import NavigationService from'./NavigationService.js';
+import {StyleSheet, Text, View, Image, AsyncStorage, TouchableOpacity} from 'react-native';
 import StarRating from "react-native-star-rating";
 import Moment from 'moment';
 
