@@ -1,3 +1,5 @@
 language: node_js
 node_js:
   - "10.0"
+before_script:
+  - react-native link react-native-gesture-handler
