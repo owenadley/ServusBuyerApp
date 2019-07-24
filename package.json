@@ -47,6 +47,9 @@
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "react-native-awesome-card-io": "<rootDir>/node_modules/react-native-awesome-card-io/CardIOView.ios.js"
+    }
   }
 }
