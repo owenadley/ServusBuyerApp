@@ -18,6 +18,8 @@ jest.mock('react-native-awesome-card-io', () => {
   }
 })
 
+jest.mock('react-native-checkout');
+  
 it('renders correctly', () => {
   renderer.create(<App />);
 });
