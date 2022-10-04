@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "expo": "^32.0.6",
+    "expo": "^46.0.14",
     "hoist-non-react-statics": "^3.3.0",
     "lottie-react-native": "^2.6.1",
     "moment": "^2.24.0",
